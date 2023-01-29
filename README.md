@@ -42,7 +42,7 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 # LaTex
 
-$\forall x \in X, \quad \exists y \leq \epsilon
+$\forall x \in X, \quad \exists y \leq \epsilon$
 
 This sentence uses `$` delimiters to show math inline:  $\sqrt{3x-1}+(1+x)^2$
 
