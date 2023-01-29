@@ -39,3 +39,8 @@ One of our team members is currently pursuing a **Master's degree** in Data Scie
 Additionally, we hold **two MBA degrees**. One of them has an **MBA in Data Science**, and the other one has an **MBA in Project Management**. These individuals bring a unique combination of technical and business expertise to the team, allowing us to provide our clients with a holistic approach to data analytics.
 
 Our team's **diverse academic backgrounds and industry experience** allow us to approach projects from multiple perspectives and deliver tailored, effective solutions to our clients. We are always looking for new ways to improve our skills and stay up-to-date with the latest industry trends and technologies.
+
+# LaTex
+
+\forall x \in X, \quad \exists y \leq \epsilon
+
