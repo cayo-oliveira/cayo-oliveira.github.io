@@ -42,5 +42,5 @@ Our team's **diverse academic backgrounds and industry experience** allow us to 
 
 # LaTex
 
-\forall x \in X, \quad \exists y \leq \epsilon
+$ \forall x \in X, \quad \exists y \leq \epsilon $
 
