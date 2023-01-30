@@ -6,6 +6,9 @@ tags: [computer science, history, ENIAC, enigma, applications]
 ---
 
 
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+
 # World of Data
 
 ## Computer Science
