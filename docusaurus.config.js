@@ -16,7 +16,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'YouEngCode',
   tagline: 'Lets learn together about Data',
-  //docusaurus: url: 'https://www.youengcode.com',
+  //url: 'https://www.youengcode.com',
   url: 'https://cayo-oliveira.github.io',
   baseUrl: '/',
   projectName: 'cayo-oliveira.github.io',
