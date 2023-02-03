@@ -1,5 +1,8 @@
 ---
-sidebar_position: 2
+slug: Petri Net and History
+title: Petri Net and History
+authors: cayofel
+tags: [history, petri_nets, redes_de_petri, sistemas_dinamicos]
 ---
 
 # Petri Nets and History
