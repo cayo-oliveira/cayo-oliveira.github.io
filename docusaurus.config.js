@@ -7,8 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 //---------------------------------------------------------------------------------------------------
 
 // To enable KaTeX, you need to install remark-math and rehype-katex plugins.
-//const math = require('remark-math')
-//const katex = require('rehype-katex')
+const math = require('remark-math')
+const katex = require('rehype-katex')
 
 //---------------------------------------------------------------------------------------------------
 
@@ -20,15 +20,15 @@ const config = {
   url: 'https://cayo-oliveira.github.io',
   baseUrl: '/',
   projectName: 'cayo-oliveira.github.io',
-  //stylesheets: [
-  //  {
-  //    href: '/katex/katex/katex.min.css',
-  //    type: 'text/css',
-  //    integrity:
-  //      'sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X',
-  //    crossorigin: 'anonymous',
-  //  },
-  //],
+  stylesheets: [
+    {
+      href: '/katex/katex/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X',
+      crossorigin: 'anonymous',
+    },
+  ],
   organizationName: 'cayo-oliveira',
   trailingSlash: false,
   onBrokenLinks: 'throw',
@@ -149,15 +149,15 @@ const config = {
           path: 'docs',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          //remarkPlugins: [math],
-          //rehypePlugins: [katex],
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
         }, 
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          //remarkPlugins: [math],
-          //rehypePlugins: [katex],
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
