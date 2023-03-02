@@ -57,3 +57,5 @@ The tool used in this course will be Mercury, developed by the group and used ex
 ## Site
 
 Students can go to modcs.org to download the Mercury tool
+
+
