@@ -1,461 +1,40 @@
 ---
-sidebar_position: 1
+sidebar_position: 5
 ---
 
-# Análise Operacional
+# Métricas Derivadas
 
-- AUla 01
-- Aula 02
-- Aula 03
-- AUla 04
-- Tool: OL - Botlenecks
-
-## Introdução
-
-Vamos analisar um sistema que está em funcionamento. 
-É uma analise do sistema que está operando, de desempenho. 
-
-Ela se baseia em variáveis operacionais Elas são chamadas assim porque capturam informação do sistema que está operando. 
-São variáveis obtidas do sistema que está operando. QUe são observadas do sistema.
-
-### Análise Operacional na Avaliação de Desempenho de Sistemas
-
-A análise operacional é uma técnica usada para modelar o desempenho de sistemas de computação, como redes de computadores e servidores. As Leis Operacionais (Operational Laws) são um conjunto de equações matemáticas descritas no livro "The Art of Computer Systems Performance Analysis Techniques" de Raj Jain.
-
-As três leis operacionais mais conhecidas são:
-
-1. **Lei de Little**: afirma que, em um sistema de fila, o número médio de itens na fila é igual à taxa média de chegada multiplicada pelo tempo médio que um item permanece no sistema (incluindo o tempo na fila e o tempo de serviço).
-
-2. **Lei de Erlang**: usada para modelar sistemas de fila com vários servidores. Afirma que o número médio de clientes que podem ser atendidos em um sistema de fila é igual ao produto da taxa média de chegada de clientes pelo tempo médio que cada cliente passa no sistema, dividido pelo fator de utilização do servidor.
-
-3. **Lei de Utilização de Kendall**: usada para modelar sistemas de computação com vários recursos (como CPUs, discos e memória). Afirma que a utilização média de cada recurso é igual à taxa média de chegada multiplicada pelo tempo médio que cada cliente passa no sistema, multiplicado pelo número médio de recursos necessários para atender a cada cliente.
-
-Na arquitetura da AWS, é possível usar serviços como o Amazon EC2, o Amazon Elastic Container Service (ECS) e o Amazon Simple Queue Service (SQS) para implementar modelos de sistemas de fila que possam ser analisados com as leis operacionais. Essas leis podem ser usadas para calcular métricas de desempenho do sistema, como a taxa média de chegada, o tempo médio de resposta e a utilização média dos recursos. Com base nessas métricas, você pode avaliar o desempenho do sistema e fazer ajustes para melhorá-lo.
-
-
-## Variáveis Operacionais
-
-```mermaid
-graph LR
-Ai --> Recurso --> Ci
-```
-
-- **T**: Período de Observação
-- **K**: Número de Recursos do Sistema
-- **Ai**: Número total de solicitações (ex: checagas) do recurso i no período T
-- **A0**: Número total de solicitações (ex: chegadas) ao sistema no período T.
-- **Ci**: Número total de serviços finalizados pelo recurso i no período T
-- **C0**: Número total de serviços finalizados pelo sistema no período T
-- **Bi**: Tempo de ocupação do recurso i no período T
-
-Atenção que existe diferença entre o SISTEMA e o RECURSO
-
-Pode ser que eu possa ter diversas visitas a cada recurso.
-
-### Sistema
-
-O sistema é o conjunto completo de recursos que trabalham juntos para atender a uma determinada demanda. O sistema pode ser um aplicativo, um servidor, uma rede ou qualquer combinação desses componentes que trabalham em conjunto para entregar um serviço ou funcionalidade.
-
-Exemplo de sistema da AWS: 
-- sistema de armazenamento em nuvem;
-- sistema de processamento de big data;
-- sistema de gerenciamento de banco de dados;
-- sistema de aprendizado de máquina;
-
-### Recurso
-
-O recurso é um componente individual que faz parte do sistema. O recurso pode ser um servidor, um banco de dados, uma conexão de rede ou qualquer outro componente que faça parte do sistema.
-
-Exemplo de recurso da AWS:
-- EC2; 
-- S3;
-- RDS;
-- DynamoDB; 
-- Lambda;
-- Fargate;
-
-### Recurso contido no Sistema
-
-Cada sistema da AWS é composto por diferentes recursos da plataforma que trabalham juntos para fornecer a funcionalidade desejada. Por exemplo:
-
-- um sistema de armazenamento em nuvem pode ser composto pelo serviço de armazenamento de objetos S3, pelo serviço de transferência de dados AWS Transfer for SFTP e pelo serviço de backup e recuperação de dados AWS Backup. 
-- O sistema de processamento de big data, por sua vez, pode ser composto pelo serviço de processamento distribuído EMR, pelo serviço de armazenamento de dados distribuído S3 e pelo serviço de ingestão de dados Kinesis. 	
-
-Cada sistema é projetado para atender a uma necessidade específica e os recursos são escolhidos e configurados para trabalhar juntos para alcançar o objetivo desejado.
-
-:::info
-O Amazon Elastic Compute Cloud (EC2) é um serviço de computação em nuvem da Amazon Web Services (AWS) que fornece capacidade de computação escalável na nuvem. Ele permite que os usuários aluguem máquinas virtuais sob demanda e paguem apenas pelo tempo de uso, sem a necessidade de investir em infraestrutura de hardware própria. Com o EC2, os usuários podem escolher o tipo de instância que melhor atende às suas necessidades de computação, memória, armazenamento e rede, além de configurar a segurança e a rede da instância. É um serviço muito flexível e usado para uma ampla variedade de casos de uso, desde hospedagem de sites até executar aplicativos complexos de big data e machine learning.
-
-EC2 é uma ferramenta que permite criar servidores virtuais na nuvem, o que é super útil porque você pode escalá-los para cima ou para baixo conforme a necessidade. É como ter uma cozinha maior ou menor, dependendo do tamanho da sua família ou convidados.
-:::
-
-:::info
-O Amazon Relational Database Service (RDS) é um serviço de banco de dados relacional da Amazon Web Services (AWS) que facilita a configuração, operação e escalabilidade de um banco de dados relacional na nuvem. O RDS oferece suporte a várias engines de banco de dados, como MySQL, PostgreSQL, Oracle, SQL Server e outras, permitindo que os usuários escolham a engine que melhor atende às suas necessidades. Com o RDS, os usuários podem configurar e gerenciar facilmente a capacidade de armazenamento, desempenho, backup e segurança de seus bancos de dados, sem a necessidade de investir em infraestrutura de banco de dados própria. O RDS também oferece recursos avançados, como replicação multi-AZ para alta disponibilidade, leitura de réplica, backup automatizado, migração de dados, monitoramento de desempenho e integração com outros serviços da AWS. É um serviço muito popular entre empresas de todos os tamanhos que precisam de um banco de dados relacional escalável e gerenciado na nuvem.
-
-Já o RDS é um serviço de banco de dados gerenciado, que facilita muito a vida de quem precisa armazenar e gerenciar muitos dados. É tipo ter um armário organizado para guardar todas as suas coisas.
-:::
-
-:::info
-O Amazon Elastic MapReduce (EMR) é um serviço da Amazon Web Services (AWS) que permite executar e gerenciar facilmente clusters de processamento distribuído baseados em Hadoop, Spark, Presto, Hive e outras tecnologias de big data na nuvem. Um cluster EMR é um grupo de instâncias do Amazon Elastic Compute Cloud (EC2) que são configuradas automaticamente para executar um conjunto de serviços de big data. O EMR permite que os usuários criem rapidamente um cluster, processem grandes conjuntos de dados, executem análises de big data e forneçam insights valiosos usando uma variedade de ferramentas e frameworks populares de big data. O EMR também oferece recursos de escalabilidade automática, gerenciamento de dados, segurança, monitoramento e logging para simplificar a criação e operação de clusters de big data na nuvem. O EMR é usado por empresas de todos os tamanhos para uma variedade de casos de uso, incluindo análise de log, análise de dados, processamento de imagens e aprendizado de máquina.
-
-Então, olha só, o Amazon EMR é uma ferramenta que ajuda a processar um monte de informações bem rápido, sem precisar gastar uma grana alta com equipamento. Sabe quando você quer fazer um almoço bem rápido e usa uma panela de pressão pra acelerar o processo? É tipo isso. O EMR usa várias ferramentas pra te ajudar a coletar e analisar informações sem precisar comprar todo um equipamento caro. E aí, quanto mais você usa, mais barato fica. É tipo cozinhar um jantar grande - quanto mais você faz, mais barato fica por porção, sacou?
-:::
-
-:::info
-Airflow é uma ferramenta de fluxo de trabalho de código aberto que ajuda a automatizar tarefas e fluxos de trabalho de dados, o que é super útil quando você precisa lidar com muitas informações diferentes. É como ter um assistente que sabe exatamente o que você precisa fazer a cada momento.
-
-Sagemaker é uma plataforma de aprendizado de máquina totalmente gerenciada que ajuda a treinar e implantar modelos de aprendizado de máquina de forma rápida e fácil. É como ter um professor particular de matemática que te ajuda a resolver problemas complexos.
-
-Glue Studio e Glue são ferramentas de integração e ETL (Extração, Transformação e Carga) de dados que facilitam muito a vida de quem precisa coletar, transformar e mover muitos dados entre diferentes sistemas e formatos. É como ter um assistente que cuida de todo o trabalho pesado e te ajuda a manter tudo organizado.
-:::
-
-:::info
-O Fargate é um serviço da AWS que facilita a execução de aplicativos em contêineres. Ele oferece uma plataforma de hospedagem gerenciada, para que você possa se concentrar em escrever código e não se preocupar com a infraestrutura por trás. Com o Fargate, você pode escalar rapidamente seus aplicativos, garantir alta disponibilidade e segurança robusta. Além disso, ele também permite que você escolha as ferramentas e bibliotecas de contêiner que melhor atendem às necessidades do seu aplicativo. Com o Fargate, você pode executar seus aplicativos em contêineres de forma simples, eficiente e com economia de custos, pagando apenas pelo uso que você fizer do serviço.
-
-O Fargate é uma tecnologia que permite executar contêineres em um ambiente completamente gerenciado, sem a necessidade de provisionar ou gerenciar servidores. Isso é extremamente útil porque você pode focar no desenvolvimento de aplicativos sem se preocupar com a infraestrutura. É como ter um cozinheiro pessoal que prepara sua refeição sem que você precise se preocupar em comprar ingredientes ou limpar a cozinha depois. O Fargate cuida de tudo para você, desde a configuração até a execução de contêineres.
-:::
-
-## Variáveis Operacionais na Arquitetura AWS
-
-### CloudWatch
-
-O serviço CloudWatch pode ser usado para coletar dados de desempenho de vários recursos da AWS, como servidores EC2, bancos de dados RDS e clusters EMR. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de solicitações recebidas por um recurso específico em um determinado período, como o número total de solicitações recebidas por um servidor EC2 em uma hora.
-Ci: Número total de serviços concluídos por um recurso específico em um determinado período, como o número total de requisições processadas por um banco de dados RDS em um dia.
-A0: Número total de solicitações recebidas pelo sistema em um determinado período, como o número total de solicitações recebidas por todos os recursos monitorados pelo CloudWatch em uma semana.
-C0: Número total de serviços concluídos pelo sistema em um determinado período, como o número total de requisições processadas por todos os recursos monitorados pelo CloudWatch em um mês.
-Bi: Tempo de ocupação de um recurso específico em um determinado período, como o tempo de CPU utilizado por um servidor EC2 em uma hora.
-K: Número de recursos monitorados pelo CloudWatch.
-T: Período de observação dos dados coletados.
-
-### AWS Glue
-
-O serviço AWS Glue pode ser usado para coletar e processar dados de várias fontes, como bancos de dados, armazenamentos de dados e streams. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de solicitações recebidas por um recurso específico em um determinado período, como o número total de requisições recebidas por um banco de dados em um dia.
-Ci: Número total de serviços concluídos por um recurso específico em um determinado período, como o número total de requisições processadas por um fluxo de dados em uma hora.
-A0: Número total de solicitações recebidas pelo sistema em um determinado período, como o número total de requisições recebidas por todos os recursos monitorados pelo AWS Glue em uma semana.
-C0: Número total de serviços concluídos pelo sistema em um determinado período, como o número total de requisições processadas por todos os recursos monitorados pelo AWS Glue em um mês.
-Bi: Tempo de ocupação de um recurso específico em um determinado período, como o tempo de processamento de dados por um fluxo de dados em uma hora.
-K: Número de recursos monitorados pelo AWS Glue.
-T: Período de observação dos dados coletados.
-
-### Amazon SageMaker
-
-O serviço Amazon SageMaker pode ser usado para treinar, hospedar e escalar modelos de aprendizado de máquina. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de solicitações recebidas por um recurso específico em um determinado período, como o número total de solicitações de previsão feitas por um modelo em uma hora.
-Ci: Número total de previsões realizadas por um recurso específico em um determinado período, como o número total de previsões feitas por um modelo em um dia.
-
-A0: Número total de solicitações recebidas pelo sistema em um determinado período, como o número total de solicitações de previsão feitas para todos os modelos hospedados pelo Amazon SageMaker em uma semana.
-
-C0: Número total de serviços concluídos pelo sistema em um determinado período, como o número total de previsões feitas por todos os modelos hospedados pelo Amazon SageMaker em um mês.
-
-Bi: Tempo de ocupação de um recurso específico em um determinado período, como o tempo de treinamento de um modelo de aprendizado de máquina em uma semana.
-
-K: Número de modelos de aprendizado de máquina hospedados pelo Amazon SageMaker.
-
-T: Período de observação dos dados coletados.
-
-### Amazon EC2
-
-O serviço Amazon EC2 permite que os usuários lancem e gerenciem servidores virtuais na nuvem da AWS. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de solicitações recebidas por um servidor específico em um determinado período, como o número total de solicitações HTTP recebidas por um servidor web em uma hora.
-Ci: Número total de serviços concluídos por um servidor específico em um determinado período, como o número total de solicitações HTTP processadas por um servidor web em um dia.
-A0: Número total de solicitações recebidas pelo sistema em um determinado período, como o número total de solicitações HTTP recebidas por todos os servidores web lançados pelo Amazon EC2 em uma semana.
-C0: Número total de serviços concluídos pelo sistema em um determinado período, como o número total de solicitações HTTP processadas por todos os servidores web lançados pelo Amazon EC2 em um mês.
-Bi: Tempo de ocupação de um servidor específico em um determinado período, como o tempo de CPU utilizado por um servidor web em uma hora.
-K: Número de servidores lançados pelo Amazon EC2.
-T: Período de observação dos dados coletados.
-
-
-### Apache Airflow
-
-O Apache Airflow é uma plataforma para programação e agendamento de fluxos de trabalho de dados. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de tarefas executadas em um determinado fluxo de trabalho em um período T.
-Ci: Número total de tarefas concluídas por um operador específico em um determinado período T.
-A0: Número total de tarefas executadas em todos os fluxos de trabalho agendados no Airflow em um período T.
-C0: Número total de tarefas concluídas em todos os fluxos de trabalho agendados no Airflow em um período T.
-Bi: Tempo de execução de um operador específico em um determinado período T.
-K: Número de operadores executando tarefas no Airflow.
-T: Período de observação dos dados coletados.
-
-### Amazon EMR
-
-O Amazon EMR é um serviço de big data que permite a execução distribuída de frameworks como Apache Hadoop e Apache Spark. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de jobs executados em um cluster EMR em um período T.
-Ci: Número total de tarefas executadas por um nó específico em um período T.
-A0: Número total de jobs executados em todos os clusters EMR em um período T.
-C0: Número total de tarefas executadas em todos os nós de todos os clusters EMR em um período T.
-Bi: Tempo de execução de um nó específico em um período T.
-K: Número de nós em um cluster EMR.
-T: Período de observação dos dados coletados.
-
-
-### Amazon S3
-
-O Amazon S3 é um serviço de armazenamento de objetos da AWS. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de requisições GET ou PUT feitas para um objeto específico em um período T.
-Ci: Número total de requisições GET feitas para um objeto específico em um período T.
-A0: Número total de requisições GET ou PUT feitas para todos os objetos armazenados no S3 em um período T.
-C0: Número total de requisições GET feitas para todos os objetos armazenados no S3 em um período T.
-Bi: Tempo de acesso de um objeto específico em um período T.
-K: Número de objetos armazenados no S3.
-T: Período de observação dos dados coletados.
-
-
-### Amazon Redshift
-
-O Amazon Redshift é um serviço de data warehousing da AWS. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de consultas feitas para um cluster Redshift em um período T.
-Ci: Número total de linhas retornadas por uma consulta específica em um período T.
-A0: Número total de consultas feitas para todos os clusters Redshift em um período T.
-C0: Número total de linhas retornadas por todas as consultas feitas para todos os clusters Redshift em um período T.
-
-Bi: Tempo de execução de uma consulta específica em um período T.
-
-K: Número de clusters Redshift.
-
-T: Período de observação dos dados coletados.
-
-### Amazon RDS
-
-O Amazon RDS é um serviço de banco de dados relacional da AWS. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de solicitações de consulta feitas para um banco de dados RDS em um período T.
-Ci: Número total de linhas retornadas por uma consulta específica em um período T.
-A0: Número total de solicitações de consulta feitas para todos os bancos de dados RDS em um período T.
-C0: Número total de linhas retornadas por todas as consultas feitas para todos os bancos de dados RDS em um período T.
-Bi: Tempo de execução de uma consulta específica em um período T.
-K: Número de bancos de dados RDS.
-T: Período de observação dos dados coletados.
-
-
-### Amazon DynamoDB
-
-O Amazon DynamoDB é um serviço de banco de dados NoSQL da AWS. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de operações de gravação ou leitura feitas para uma tabela específica em um período T.
-Ci: Número total de operações de leitura feitas para uma tabela específica em um período T.
-A0: Número total de operações de gravação ou leitura feitas para todas as tabelas DynamoDB em um período T.
-C0: Número total de operações de leitura feitas para todas as tabelas DynamoDB em um período T.
-Bi: Tempo de acesso a uma tabela específica em um período T.
-K: Número de tabelas DynamoDB.
-T: Período de observação dos dados coletados.
-
-### Amazon API Gateway
-
-O Amazon API Gateway é um serviço que permite criar, publicar, manter, monitorar e proteger APIs. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de requisições feitas para uma API específica em um período T.
-Ci: Número total de requisições concluídas com sucesso para uma API específica em um período T.
-A0: Número total de requisições feitas para todas as APIs do Amazon API Gateway em um período T.
-C0: Número total de requisições concluídas com sucesso para todas as APIs do Amazon API Gateway em um período T.
-Bi: Tempo de resposta de uma requisição específica em um período T.
-K: Número de APIs criadas no Amazon API Gateway.
-T: Período de observação dos dados coletados.
-
-
-### AWS Lambda
-
-O AWS Lambda é um serviço de computação serverless que permite executar código em resposta a eventos e escaloná-lo automaticamente com base na demanda. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de invocações de uma função específica do AWS Lambda em um período T.
-Ci: Número total de invocações da função que foram concluídas com sucesso em um período T.
-A0: Número total de invocações de todas as funções do AWS Lambda em um período T.
-C0: Número total de invocações de todas as funções do AWS Lambda que foram concluídas com sucesso em um período T.
-Bi: Tempo de resposta para processar uma única invocação de uma função específica do AWS Lambda em um período T.
-K: Número de funções criadas no AWS Lambda.
-T: Período de observação dos dados coletados.
-
-### Amazon CloudFront
-
-O Amazon CloudFront é um serviço de distribuição de conteúdo que permite fornecer conteúdo de forma rápida e segura. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de requisições feitas para um determinado objeto em um período T.
-Ci: Número total de vezes que um determinado objeto foi entregue com sucesso em um período T.
-A0: Número total de requisições feitas para todos os objetos do Amazon CloudFront em um período T.
-C0: Número total de vezes que todos os objetos do Amazon CloudFront foram entregues com sucesso em um período T.
-Bi: Tempo de resposta de entrega de um determinado objeto em um período T.
-K: Número de distribuições do Amazon CloudFront.
-T: Período de observação dos dados coletados.
-
-### Amazon Elastic Beanstalk
-
-O Amazon Elastic Beanstalk é um serviço que permite implantar e escalar aplicativos da web e serviços da web. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de solicitações feitas para uma aplicação específica em um período T.
-Ci: Número total de solicitações bem-sucedidas para uma aplicação específica em um período T.
-A0: Número total de solicitações feitas para todas as aplicações do Amazon Elastic Beanstalk em um período T.
-C0: Número total de solicitações bem-sucedidas para todas as aplicações do Amazon Elastic Beanstalk em um período T.
-Bi: Tempo de resposta de uma solicitação específica em um período T.
-K: Número de aplicações implantadas no Amazon Elastic Beanstalk.
-T: Período de observação dos dados coletados.
-
-
-### Amazon Elastic File System (EFS)
-
-O Amazon EFS é um serviço de armazenamento de arquivos totalmente gerenciado e escalável que pode ser usado com as instâncias do Amazon EC2. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de operações de leitura/gravação em um sistema de arquivos específico em um período T.
-Ci: Número total de operações de leitura/gravação bem-sucedidas em um sistema de arquivos específico em um período T.
-A0: Número total de operações de leitura/gravação em todos os sistemas de arquivos do Amazon EFS em um período T.
-C0: Número total de operações de leitura/gravação bem-sucedidas em todos os sistemas de arquivos do Amazon EFS em um período T.
-Bi: Tempo de resposta para operações de leitura/gravação em um sistema de arquivos específico em um período T.
-K: Número de sistemas de arquivos criados no Amazon EFS.
-T: Período de observação dos dados coletados.
-
-### Amazon Elastic Container Registry (ECR)
-
-O Amazon ECR é um registro de imagens de contêiner seguro e totalmente gerenciado que facilita o armazenamento, gerenciamento e implantação de imagens de contêiner do Docker. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de imagens armazenadas em um repositório específico em um período T.
-Ci: Número total de imagens baixadas com sucesso de um repositório específico em um período T.
-A0: Número total de imagens armazenadas em todos os repositórios do Amazon ECR em um período T.
-C0: Número total de imagens baixadas com sucesso de todos os repositórios do Amazon ECR em um período T.
-Bi: Tempo de resposta para baixar uma imagem específica em um período T.
-K: Número de repositórios criados no Amazon ECR.
-T: Período de observação dos dados coletados.
-
-
-### Amazon DocumentDB
-
-O Amazon DocumentDB é um serviço de banco de dados de documentos compatível com MongoDB que oferece escalabilidade, desempenho e disponibilidade. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de solicitações de leitura/gravação em uma coleção específica em um período T.
-Ci: Número total de solicitações de leitura/gravação bem-sucedidas em uma coleção específica em um período T.
-A0: Número total de solicitações de leitura/gravação em todas as coleções do Amazon DocumentDB em um período T.
-C0: Número total de solicitações de leitura/gravação bem-sucedidas em todas as coleções do Amazon DocumentDB em um período T.
-Bi: Tempo de resposta para uma solicitação de leitura/gravação em uma coleção específica em um período T.
-K: Número de coleções criadas no Amazon DocumentDB.
-T: Período de observação dos dados coletados.
-
-
-### Amazon Simple Notification Service (SNS)
-
-O Amazon SNS é um serviço de mensagens e notificações gerenciado que permite enviar mensagens para assinantes ou endpoints. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de mensagens publicadas em um tópico específico em um período T.
-Ci: Número total de mensagens entregues com sucesso a um endpoint específico em um período T.
-A0: Número total de mensagens publicadas em todos os tópicos do Amazon SNS em um período T.
-C0: Número total de mensagens entregues com sucesso a todos os endpoints do Amazon SNS em um período T.
-Bi: Tempo de resposta para entregar uma mensagem a um endpoint específico em um período T.
-K: Número de tópicos criados no Amazon SNS.
-T: Período de observação dos dados coletados.
-
-### Amazon Simple Queue Service (SQS)
-
-O Amazon SQS é um serviço de filas gerenciado que permite desacoplar e escalar microsserviços, sistemas distribuídos e aplicativos sem servidor. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de mensagens recebidas por uma fila específica em um período T.
-Ci: Número total de mensagens processadas com sucesso por uma fila específica em um período T.
-A0: Número total de mensagens recebidas por todas as filas no Amazon SQS em um período T.
-C0: Número total de mensagens processadas com sucesso por todas as filas no Amazon SQS em um período T.
-Bi: Tempo de resposta para processar uma mensagem por uma fila específica em um período T.
-K: Número de filas criadas no Amazon SQS.
-T: Período de observação dos dados coletados.
-
-### Amazon Elastic Kubernetes Service (EKS)
-
-O Amazon EKS é um serviço totalmente gerenciado que torna mais fácil executar o Kubernetes na AWS. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de pods iniciados em um cluster Kubernetes específico em um período T.
-Ci: Número total de pods concluídos com sucesso em um cluster Kubernetes específico em um período T.
-A0: Número total de pods iniciados em todos os clusters Kubernetes no Amazon EKS em um período T.
-C0: Número total de pods concluídos com sucesso em todos os clusters Kubernetes no Amazon EKS em um período T.
-Bi: Tempo de resposta para executar um pod em um contêiner específico em um período T.
-K: Número de clusters Kubernetes criados no Amazon EKS.
-T: Período de observação dos dados coletados.
-
-### O Amazon Kinesis
-
-É um serviço de streaming de dados em tempo real que permite a ingestão, processamento e análise de grandes quantidades de dados em tempo real. As variáveis operacionais podem ser coletadas da seguinte forma:
-
-Ai: Número total de eventos recebidos em um stream de dados específico em um período T.
-Ci: Número total de eventos processados e entregues com sucesso em um stream de dados específico em um período T.
-A0: Número total de eventos recebidos em todos os streams de dados no Amazon Kinesis em um período T.
-C0: Número total de eventos processados e entregues com sucesso em todos os streams de dados no Amazon Kinesis em um período T.
-Bi: Tempo de processamento para processar um evento em um stream de dados específico em um período T.
-K: Número de streams de dados criados no Amazon Kinesis.
-T: Período de observação dos dados coletados.
-
-## Sistema 
-
-O sistema de processamento de big data, por sua vez, pode ser composto pelo serviço de processamento distribuído EMR, pelo serviço de armazenamento de dados distribuído S3 e pelo serviço de ingestão de dados Kinesis.
-
-
-T: Período de observação;
-K: Número de recursos do sistema, que nesse caso é composto por três serviços;
-Ai: Número total de solicitações (ex: ingestão de dados) do recurso i (EMR, S3 ou Kinesis) no período T;
-A0: Número total de solicitações (ex: chegadas) ao sistema (EMR, S3 e Kinesis) no período T;
-Ci: Número total de serviços finalizados pelo recurso i (EMR, S3 ou Kinesis) no período T;
-C0: Número total de serviços finalizados pelo sistema (EMR, S3 e Kinesis) no período T;
-Bi: Tempo de ocupação do recurso i (EMR, S3 ou Kinesis) no período T.
-
-EMR (Elastic MapReduce):
-Ai: Número de tarefas de processamento executadas em um determinado tempo
-Ci: Número de tarefas de processamento finalizadas em um determinado tempo
-Bi: Tempo de processamento médio de cada tarefa
-
-S3 (Simple Storage Service):
-Ai: Número de requisições de leitura ou gravação de arquivos em um determinado tempo
-Ci: Número de requisições de leitura ou gravação de arquivos finalizadas em um determinado tempo
-Bi: Tempo de leitura ou gravação médio de cada arquivo
-
-Kinesis:
-Ai: Número de eventos de dados recebidos em um determinado tempo
-Ci: Número de eventos de dados processados e transmitidos em um determinado tempo
-Bi: Tempo de processamento médio de cada evento de dados
-
-## Considerações Finais
-
-A avaliação de desempenho de sistemas é fundamental para garantir o bom funcionamento de aplicações e serviços. A AWS oferece uma ampla variedade de serviços para coletar dados e analisar o desempenho de sistemas e recursos, como o EMR, Airflow, ECS, S3, Redshift, RDS, DynamoDB, Lambda, Glue Studio e Fargate.
-
-Esses serviços permitem coletar variáveis operacionais, como o número de solicitações e serviços finalizados, o tempo de ocupação e de resposta de recursos, o número de clusters e o período de observação. Com esses dados, é possível analisar o desempenho de sistemas e recursos, identificar gargalos e tomar decisões para otimizar o uso de recursos e melhorar a experiência do usuário.
-
-Além disso, o Kinesis e o Amazon EKS são serviços específicos que permitem coletar variáveis operacionais relacionadas a clusters Kubernetes e ingestão de dados em tempo real. A avaliação de desempenho de sistemas com AWS é uma prática essencial para empresas que buscam garantir a qualidade de seus serviços e a satisfação do cliente.
-
-Durante nossa conversa, abordamos diversos temas relacionados à arquitetura de dados da AWS e à avaliação de desempenho de sistemas. Falamos sobre serviços como EC2, RDS, EMR, S3, Airflow, Sagemaker, Glue e Fargate, descrevendo suas funcionalidades e possíveis aplicações. Além disso, discutimos conceitos como sistemas, recursos, variáveis operacionais e notação de Kendall para sistemas de fila.
-
-Falamos também sobre como coletar variáveis operacionais de cada um dos serviços citados, dando exemplos de como é possível obter métricas como número de solicitações, número de serviços finalizados e tempo de ocupação do recurso. Por fim, vimos como é possível utilizar essas variáveis para avaliar o desempenho de sistemas, considerando aspectos como escalabilidade e eficiência.
-
-Espero que este resumo ajude a transmitir as principais ideias discutidas em nossa conversa.
+As **métricas derivadas** são medidas que resultam da **aplicação de cálculos matemáticos ou estatísticos sobre outras métricas  (variáveis operacionais)**. Essas medidas fornecem informações complementares sobre o desempenho de um sistema e **são frequentemente utilizadas na análise operacional para avaliação de desempenho**. A utilização de métricas derivadas pode ajudar a compreender melhor o comportamento do sistema e a identificar possíveis áreas de melhoria.
 
 ## Métricas Derivadas Básicas
 
-- Si: Tempo Médio de serviço por finalização relativa ao recurso i
+- **Si**: Tempo Médio de serviço por finalização relativa ao recurso i
 
 Si = Bi/Ci
 
-- Ui: Utilização média do recurso i
+- **Ui**: Utilização média do recurso i
 
 Ui = Bi/T
 
-- Xi: Throughput ou fnializações por unidade de tempo do recurso i 
+- **Xi**: Throughput ou fnializações por unidade de tempo do recurso i 
 
 Xi = Ci/T
 
-- Lambda i: Taxa de Chegada ou chegadas por unidade de tempo ao recurso i 
+- **Lambda i**: Taxa de Chegada ou chegadas por unidade de tempo ao recurso i 
 
 Lambda i = Ai/T
 
-- X0: throughtput do sistema
+- **X0**: throughtput do sistema
 
 X0 = C0/T
 
-- Vi: Número médio de visitas ao recurso i por solicitação
+- **Vi**: Número médio de visitas ao recurso i por solicitação
 
 Vi = Ci/C0
 
 Aqui, temos que calcular cada visita e depois tirar a média.
 
-### Revisitando o Sistema de Exemplo
+### Sistema Simples de Exemplo para Processamento de Big Data
 
 O sistema de processamento de big data, por sua vez, pode ser composto pelo serviço de processamento distribuído EMR, pelo serviço de armazenamento de dados distribuído S3 e pelo serviço de ingestão de dados Kinesis.
 
@@ -507,7 +86,7 @@ V_i: Número médio de visitas ao recurso i por solicitação:
 V_i = Ci/C0
 
 
-### Valores Reais do Sistema
+### Valores Reais para as Variáveis Operacionais
 
 Considerando os valores reais do sistema, podemos ter, por exemplo:
 
@@ -526,7 +105,7 @@ Ai = 5000 eventos de dados recebidos em 1 hora
 Ci = 4000 eventos de dados processados e transmitidos em 1 hora
 Bi = 0,5 segundos para processar cada evento de dados.
 
-### Reforçando as Métricas Derivadas Bácias do Recurso
+### Métricas Básicas dos Recursos
 
 EMR:
 
@@ -550,7 +129,7 @@ Xi: throughput ou finalizações por unidade de tempo (neste caso, eventos de da
 Lambda i: taxa de chegada ou número de eventos de dados recebidos por unidade de tempo;
 Vi: número médio de visitas ao recurso por solicitação (neste caso, eventos de dados).
 
-### Reforçando as Métricas Derivadas Básicas do Sistema
+### Métricas Básicas do Sistema
 
 Para o sistema como um todo, temos as seguintes métricas derivadas básicas:
 
@@ -559,7 +138,7 @@ Ui: utilização média do sistema como um todo;
 Lambda 0: taxa de chegada ou número de solicitações recebidas pelo sistema como um todo;
 Vi: número médio de visitas a cada recurso por solicitação.
 
-### Exemplo com os dados Reais
+### Calculando as Métricas Básicas
 
 EMR (Elastic MapReduce):
 
@@ -578,7 +157,7 @@ Si = Bi/Ci = 30/980 = 0,03 segundos/tarefa.
 Ui: Utilização média do recurso i.
 Ui = Bi/T, onde T é o período de observação. 
 
-Vamos supor que o período T é de 1 hora, ou seja, 3600 segundos. Então, Ui = Bi/T = (980*30)/3600 = 8.16%.
+Vamos supor que o período T é de 1 hora, ou seja, 3600 segundos. Então, Ui = Bi/T = (980x30)/3600 = 8.16%.
 
 Xi: Throughput ou finalizações por unidade de tempo do recurso i.
 Xi = Ci/T = 980/3600 = 0,272 tarefas por segundo.
@@ -601,7 +180,7 @@ Si: Tempo médio de serviço por finalização relativa ao recurso i.
 Si = Bi/Ci = 0,1/490 = 0,0002 segundos/requisição.
 
 Ui: Utilização média do recurso i.
-Ui = Bi/T, onde T é o período de observação. Vamos supor que o período T é de 1 hora, ou seja, 3600 segundos. Então, Ui = Bi/T = (490*0,1)/3600 = 0,0136%.
+Ui = Bi/T, onde T é o período de observação. Vamos supor que o período T é de 1 hora, ou seja, 3600 segundos. Então, Ui = Bi/T = (490x0,1)/3600 = 0,0136%.
 
 Xi: Throughput ou finalizações por unidade de tempo do recurso i.
 Xi = Ci/T = 490/3600 = 0,136 requisições por segundo.
@@ -645,17 +224,17 @@ Ou seja, em média, cada solicitação de leitura ou gravação de arquivos no s
 
 ### Resumo das Métricas Básicas
 
-Para o recurso EMR, o tempo médio de processamento por tarefa (Si) foi de 30 segundos, a utilização média do recurso (Ui) foi de 0,4 e o throughput (Xi) foi de 20 tarefas por minuto. Além disso, a taxa de chegada de tarefas ao recurso (Lambda i) foi de 40 tarefas por minuto.
+Para o recurso **EMR**, o tempo médio de processamento por tarefa **(Si)** foi de **30 segundos**, a utilização média do recurso **(Ui)** foi de **0,4** e o throughput **(Xi)** foi de **20 tarefas por minuto**. Além disso, a taxa de chegada de tarefas ao recurso **(Lambda i)** foi de **40 tarefas por minuto**.
 
-Para o recurso S3, o tempo médio de leitura ou gravação de cada arquivo (Bi) foi de 5 segundos, a utilização média do recurso (Ui) foi de 0,3 e o throughput (Xi) foi de 200 arquivos por minuto. Além disso, a taxa de chegada de requisições ao recurso (Lambda i) foi de 300 requisições por minuto.
+Para o recurso **S3**, o tempo médio de leitura ou gravação de cada arquivo **(Bi)** foi de **5 segundos**, a utilização média do recurso **(Ui) foi de 0,3** e o throughput **(Xi)** foi de **200 arquivos por minuto**. Além disso, a taxa de chegada de requisições ao recurso **(Lambda i)** foi de **300 requisições por minuto**.
 
-Para o recurso Kinesis, o tempo médio de processamento por evento de dados (Bi) foi de 2 segundos, a utilização média do recurso (Ui) foi de 0,6 e o throughput (Xi) foi de 500 eventos de dados por minuto. Além disso, a taxa de chegada de eventos de dados ao recurso (Lambda i) foi de 1000 eventos de dados por minuto.
+Para o recurso **Kinesis**, o tempo médio de processamento por evento de dados **(Bi)** foi de **2 segundos**, a utilização média do recurso **(Ui)** foi de **0,6** e o throughput **(Xi)** foi de **500 eventos de dados por minuto**. Além disso, a taxa de chegada de eventos de dados ao recurso **(Lambda i)** foi de **1000 eventos de dados por minuto**.
 
-O throughput do sistema (X0) foi de 120 serviços finalizados por minuto e o número médio de visitas de cada recurso por solicitação (Vi) foi de 0,17 para o EMR, 0,28 para o S3 e 0,42 para o Kinesis.
+O throughput do **sistema** **(X0)** foi de **120 serviços finalizados por minuto** e o número médio de visitas de cada recurso por solicitação **(Vi)** foi de **0,17** para o **EMR**, **0,28** para o **S3** e **0,42** para o Kinesis, **Calcular Depois**.
 
-Com base nesses resultados, podemos concluir que o recurso Kinesis teve a maior utilização média, com 0,6, o que indica um alto nível de ocupação do recurso. Por outro lado, o recurso S3 teve a maior taxa de chegada de requisições, com 300 requisições por minuto. Já o recurso EMR teve o menor tempo médio de processamento por tarefa, com 30 segundos.
+Com base nesses resultados, podemos concluir que o recurso **Kinesis teve a maior utilização média, com 0,6, o que indica um alto nível de ocupação do recurso**. Por outro lado, o recurso **S3 teve a maior taxa de chegada de requisições, com 300 requisições por minuto**. Já o recurso **EMR teve o menor tempo médio de processamento por tarefa, com 30 segundos**.
 
-Além disso, o número médio de visitas de cada recurso por solicitação (Vi) indica que o Kinesis é o recurso mais visitado por solicitação, com 0,42 visitas, seguido pelo S3, com 0,28 visitas, e pelo EMR, com 0,17 visitas. Por fim, o throughput do sistema (X0) indica que o sistema como um todo finalizou 120 serviços por minuto.
+Além disso, **o número médio de visitas de cada recurso por solicitação (Vi) indica que o Kinesis é o recurso mais visitado por solicitação, com 0,42 visitas, seguido pelo S3, com 0,28 visitas, e pelo EMR, com 0,17 visitas**. Por fim, o **throughput do sistema (X0) indica que o sistema como um todo finalizou 120 serviços por minuto**.
 
 ### Conclusão
 
@@ -666,7 +245,9 @@ No sistema de processamento de big data, composto pelos serviços EMR, S3 e Kine
 
 Até agora, exploramos vários serviços da AWS, como EC2, RDS, Fargate, EMR, S3 e Kinesis, e discutimos suas características e benefícios. Também aprendemos sobre as métricas derivadas básicas, como tempo médio de serviço, utilização média, throughput, taxa de chegada, número médio de visitas, entre outras. Utilizando essas métricas, realizamos uma análise de um sistema de processamento de big data composto pelos serviços da AWS, e obtivemos insights importantes sobre a utilização e performance de cada recurso, bem como do sistema como um todo. Esses insights foram fundamentais para identificar gargalos, otimizar a utilização de recursos e aumentar a eficiência do sistema.
 
-## People Analytics
+## Outros Exemplos
+
+### People Analytics
 
 People Analytics é o uso de dados para entender e otimizar a performance dos funcionários em uma organização. Isso inclui coletar e analisar dados relacionados a produtividade, satisfação dos funcionários, recrutamento, retenção e desenvolvimento de talentos.
 
@@ -674,7 +255,7 @@ A arquitetura AWS pode ser utilizada para construir uma solução de People Anal
 
 A avaliação de desempenho de sistemas pode ser utilizada para medir o desempenho e a eficiência da solução de People Analytics. Isso inclui o monitoramento do tempo de processamento dos dados em cada etapa do pipeline, a utilização dos recursos de computação e a taxa de erros no processamento dos dados. Com base nessas métricas, é possível identificar gargalos e pontos de melhoria no sistema, permitindo que a solução seja ajustada e otimizada para oferecer uma análise de People Analytics mais precisa e eficiente.
 
-### Variáveis Operacionais do Sistema de PA
+#### Variáveis Operacionais do Sistema de PA
 
 Um pipeline de dados eficiente para People Analytics utilizando os recursos S3, EMR, Airflow e DBT. As variáveis operacionais são:
 
@@ -712,7 +293,7 @@ Bi: tempo de transformação médio de cada modelo.
 DAG significa "Directed Acyclic Graph" e é uma representação do fluxo de trabalho em que o Airflow opera. No contexto do Airflow, um DAG é um conjunto de tarefas que precisam ser executadas em uma ordem específica para concluir uma tarefa geral. Cada tarefa é representada por um operador Airflow, e as tarefas são organizadas em um DAG usando dependências direcionais entre elas. O DAG é acíclico porque as dependências são estruturadas de tal forma que as tarefas nunca criam um ciclo em que uma tarefa depende de outra que, por sua vez, depende da primeira.
 :::
 
-### Valores das Variáveis do Sistema PA
+#### Valores das Variáveis do Sistema PA
 
 Para o exemplo do S3, considerei:
 
@@ -751,7 +332,7 @@ A0: Número total de solicitações (por exemplo, chegadas) ao sistema (S3, EMR,
 K: Número de recursos do sistema = 4.
 T: Período de observação dos dados coletados = 1
 
-### Métricas Derivadas do Sistema PA
+#### Métricas Derivadas do Sistema PA
 
 S3 (Simple Storage Service):
 
@@ -835,7 +416,7 @@ Número médio de visitas ao recurso por solicitação: Vi = 0,50
 
 Essas métricas fornecem informações importantes sobre o desempenho do sistema e dos recursos individuais. Por exemplo, a utilização média do recurso indica quanto tempo o recurso está ocupado, enquanto o throughput indica quantas solicitações são concluídas em um determinado período de tempo. O número médio de visitas ao recurso por solicitação indica a complexidade das solicitações de um recurso e pode ajudar a identificar gargalos. Ao avaliar essas métricas, é possível identificar áreas de melhoria e otimizar o desempenho do sistema como um todo.
 
-### Resultados
+#### Resultados
 
 S3:
 
@@ -873,7 +454,7 @@ Lambda = 3.333
 V = [0.133, 1, 1, 1]
 Essas métricas fornecem uma visão geral do desempenho do sistema e de seus recursos. Por exemplo, o recurso S3 tem um tempo médio de serviço (Si) de 0.133 segundos por arquivo, enquanto o EMR tem um tempo médio de serviço (Si) de 0.6 segundos por tarefa de processamento. Além disso, podemos ver que o sistema como um todo tem um throughput (X0) de 0.2 finalizações por unidade de tempo e uma utilização média (U) de 0.3625. É importante lembrar que essas métricas são apenas uma parte da avaliação do desempenho do sistema e que outras métricas e fatores também devem ser considerados para uma análise completa e precisa.
 
-### Insights do Sistema de PA
+#### Insights do Sistema de PA
 
 Com base nas métricas derivadas apresentadas para cada recurso e para o sistema como um todo, podemos obter os seguintes insights:
 
@@ -889,7 +470,7 @@ O throughput do sistema como um todo é de 25 solicitações por minuto, o que i
 
 Em resumo, é fundamental monitorar constantemente o desempenho dos recursos e do sistema como um todo, a fim de identificar possíveis gargalos e oportunidades de otimização.
 
-### Resumo do sistema de People Analytics
+#### Resumo do sistema de People Analytics
 
 Imagine que você tem uma empresa de People Analytics e precisa coletar e processar dados de forma eficiente. Para isso, utilizamos um pipeline de dados composto por quatro recursos: S3, EMR, Airflow e DBT. Durante um período de observação dos dados coletados (T), registramos um total de solicitações (A0) e serviços finalizados (C0) em todo o sistema, bem como o número de solicitações e serviços finalizados em cada recurso (Ai e Ci).
 
@@ -907,7 +488,7 @@ Para alocar mais recursos ao EMR e evitar que ele seja o gargalo do sistema, é 
 
 Para revisar a distribuição de carga entre os recursos, é importante entender o fluxo de trabalho dos dados e onde estão concentradas as principais atividades do pipeline. Pode-se avaliar a utilização dos recursos para identificar gargalos e reorganizar o pipeline de forma a redistribuir a carga entre os recursos. Também é possível utilizar ferramentas de monitoramento do sistema para identificar possíveis problemas e ajustar a distribuição de carga de forma mais precisa.
 
-## Sistema de People Analytics II
+### Sistema de People Analytics II
 
 Certo, vamos lá! Temos um sistema de pipeline de dados que começa com as bases de dados armazenadas no S3, divididas em três categorias: NPS, Acessos e Pessoas. Para processar esses dados, utilizamos o GLue Studio e códigos em .py para limpeza e processamento dos dados. A saída dos dados é armazenada em um bucket S3. Em seguida, utilizamos o Sagemaker para mover esses dados para um ghp no Hadoop. Com isso, utilizamos o Alteryx para ler esses arquivos do Hadoop e enviar para o Tableau Server. Por fim, o Tableau Server pega esses dados e os apresenta ao cliente.
 
@@ -929,7 +510,7 @@ No Glue Studio, é possível capturar o número de execuções do código em .py
 
 Para isso, você pode habilitar o CloudWatch Logs no AWS Glue Studio e configurar a captura de logs do seu job. Dessa forma, será possível visualizar o número de execuções do job e outros dados relevantes nos logs do CloudWatch.
 
-### Variáveis Operacionais
+#### Variáveis Operacionais
 
 Claro! Seguem abaixo as informações de cada recurso e suas variáveis operacionais:
 
@@ -966,7 +547,7 @@ K: número de recursos do sistema (GLue Studio, Sagemaker, Hadoop, Alteryx e Tab
 T: período de observação dos dados coletados.
 A partir dessas variáveis, é possível calcular métricas como tempo médio de processamento, número de tarefas finalizadas, throughput e taxa de chegada de solicitações, entre outras, para avaliar a eficiência do pipeline de dados e identificar possíveis gargalos ou oportunidades de melhoria.
 
-### Adicionando Números
+#### Adicionando Números
 
 Temos um sistema de pipeline de dados que trabalha com bases de dados armazenadas no S3, que incluem informações de NPS, Acessos e Pessoas. Em um período de observação de 30 dias, o sistema recebeu 10.000 solicitações de acesso às bases de dados (A0).
 
@@ -1033,7 +614,7 @@ A0 = 10.000 solicitações de acesso às bases de dados
 C0 = 2.000 arquivos gerados
 Com essas métricas, podemos avaliar a eficiência do pipeline de dados e identificar possíveis gargalos ou oportunidades de melhoria. Podemos, por exemplo, notar que o Sagemaker tem um tempo médio de movimentação de dados mais longo do que os outros recursos, o que pode ser um possível gargalo. Podemos então alocar mais recursos para o Sagemaker ou investigar se há alguma forma de otimizar o processo de movimentação de dados.
 
-### Métricas Derivadas
+#### Métricas Derivadas
 
 Métricas derivadas por recurso:
 
@@ -1083,7 +664,7 @@ Lambida 0 (Taxa de Chegada ao Sistema): 333,33/dia
 
 Obs: As métricas foram arredondadas para duas casas decimais.
 
-### Resultados e Insights
+#### Resultados e Insights
 
 Olá! O nosso sistema de pipeline de dados passou por um período de observação de 30 dias e durante esse período, pudemos coletar informações valiosas para análise. Em resumo, o sistema processou 10.000 solicitações de acesso às bases de dados, o que gerou 2.000 arquivos de saída. Para realizar esse processamento, utilizamos cinco recursos: GLue Studio, Sagemaker, Hadoop, Alteryx e Tableau Server.
 
@@ -1093,7 +674,7 @@ Por outro lado, o Hadoop apresentou um Si de apenas 12 minutos, o que indica um 
 
 Com base nesses insights, podemos tomar medidas para melhorar o desempenho geral do sistema, como alocar mais recursos para o GLue Studio ou otimizar o uso do Alteryx. Essas ações podem ajudar a aumentar o throughput do sistema e a reduzir o tempo de processamento das solicitações de acesso às bases de dados.
 
-### Como posso Endereçar os Insights
+#### Como posso Endereçar os Insights
 
 Para alocar mais recursos para o GLue Studio, uma opção seria aumentar a capacidade da instância do AWS Glue, o que permitiria mais execuções simultâneas do código em .py e, consequentemente, aumentaria o throughput do sistema. Outra opção seria avaliar o código em .py e verificar se há alguma otimização que possa ser feita para reduzir o tempo de execução, permitindo que mais execuções sejam realizadas no mesmo período de tempo.
 
@@ -1119,7 +700,7 @@ Para substituir o Tableau, uma opção é utilizar o Amazon QuickSight. O QuickS
 
 Com a utilização do AWS Glue DataBrew e do Amazon QuickSight, é possível substituir o Alteryx e o Tableau e manter todo o pipeline de dados dentro da arquitetura da AWS. Isso pode levar a uma maior eficiência e desempenho do sistema como um todo, além de facilitar a gestão e manutenção do ambiente.
 
-### Substituindo Alteryx e Tableau
+#### Substituindo Alteryx e Tableau
 
 Substituindo o Alteryx e o Tableau por ferramentas da AWS, como solicitado, as métricas do sistema ficariam da seguinte forma:
 
@@ -1163,7 +744,7 @@ Métricas derivadas do sistema:
 X0 (Throughput do sistema): 2.047.400 finalizações/dia
 Com a substituição do Alteryx pelo Amazon Athena e do Tableau pelo Amazon QuickSight, foi possível aumentar significativamente o throughput do sistema, de 66,67 finalizações/dia para 2.047.400 finalizações/dia. Além disso, a utilização média dos recursos ficou mais equilibrada, com valores abaixo de 1% para todos os recursos, e a taxa de chegada aumentou consideravelmente em relação às ferramentas anteriores. Isso mostra que a arquitetura da AWS oferece soluções mais escaláveis e eficientes para a criação de pipelines de dados.
 
-### Substituindo o Athena 
+#### Substituindo o Athena 
 
 Uma opção mais barata para substituir o Athena seria o Amazon Redshift. Ele é um serviço de data warehousing que pode ser utilizado para armazenar e analisar grandes quantidades de dados. Com o Redshift, é possível executar consultas SQL complexas em dados estruturados e não estruturados, além de permitir a integração com outras ferramentas da AWS, como o Glue Studio.
 
@@ -1218,7 +799,7 @@ X0 (Throughput do sistema): 585 finalizações/dia
 Com a substituição do Athena pelo Redshift, além da adição do Glue DataBrew e do Quicksight, é possível aumentar o throughput do sistema em mais de 3 vezes em relação ao uso do Athena e do Tableau Server. A utilização de recursos como o Redshift e o Glue DataBrew podem contribuir para a melhoria da eficiência do processamento dos dados e, consequentemente, para o aumento do throughput e da taxa de chegada do sistema. Já o Quicksight, além de apresentar os dados, pode ser utilizado para análises mais detalhadas e aprofundadas dos dados.
 
 
-### Melhor Custo Benefício
+#### Melhor Custo Benefício
 
 Com base nas necessidades do sistema e nos requisitos de custo-benefício, sugiro as seguintes ferramentas como possíveis substitutas:
 
@@ -1275,7 +856,7 @@ Com esta solução, conseguimos um alto desempenho com uma ótima relação cust
 
 Com as métricas obtidas, podemos monitorar o desempenho e a integridade do sistema, além de identificar gargalos e áreas que precisam de melhorias. Com isso, podemos fazer ajustes e melhorias contínuas para manter o sistema funcionando de maneira eficiente e confiável.
 
-### Resumo
+#### Resumo
 
 Nosso sistema de pipeline de dados foi projetado para lidar com informações de NPS, acessos e pessoas, processando esses dados em um pipeline que envolveu o uso de várias ferramentas e recursos da AWS.
 
@@ -1285,9 +866,7 @@ Com a nova configuração, pudemos ver um aumento significativo no throughput do
 
 No geral, o sistema se beneficiou das substituições estratégicas e otimizações feitas, demonstrando que é possível aumentar o desempenho e a eficiência do sistema, mesmo com um orçamento limitado.
 
-## Outros Exemplos de Livro
-
-### Exemplo I
+### Exemplo Livro I
 
 Quais as métricas derivadas do sistema abaixo:
 Suponha que ao se monitorar um processador por um período de 1 min, verificou-se que o recurso esteve ocupado por 36s. O número total de transações que chegaram ao sistema é 1800. O sistema também finalizou a execução de 1800 transações no mesmo período.
@@ -1355,9 +934,14 @@ A partir desses insights, podemos identificar oportunidades de melhoria e otimiz
 
 Referências:
 
-NIEDERMEIER, R. Art of Computer Systems Performance Analysis Techniques. John Wiley & Sons, 1990.
 
-MACIEL, P. Roteiro 1 - Introdução a Análise de Desempenho de Sistemas. Disciplina de Sistemas Distribuídos, Mestrado em Ciência da Computação, Universidade Federal de Pernambuco, 2022.
+:::info Book
+JAIN, Raj. The Art of Computer Systems Performance Analysis Techniques. John Wiley & Sons, 1991.
+:::
+
+:::info Video
+MACIEL, Paulo. Avaliação de Desempenho de Sistemas. Aula 01 [gravada em vídeo]. Professor responsável: Paulo Maciel. Pós-Graduação em Ciências da Computação, Universidade Federal de Pernambuco, Recife, 2023. Disponível em: <https://drive.google.com/file/d/1oTxjZDky_QA34pMkCn56yH5BjEI3m11d/view?usp=share_link>. Acesso em: 07/03/2023.
+:::
 
 Mensagem de Despedida:
 
