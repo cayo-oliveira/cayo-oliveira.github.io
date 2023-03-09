@@ -37,6 +37,11 @@ Ui = Si x Xi = Si x Lambda_i
 - **Xi**: Throughput ou fnializações por unidade de tempo do recurso i 
 - **Lambda i**: Taxa de Chegada ou chegadas por unidade de tempo ao recurso i 
 
+Lembre-se:
+
+Si = Bi/Ci é o tempo que o recurso ficou ocupado pelo número de recursos que ele recebeu.
+Di = Ui/X0 que é o tempo de utilização do recurso sobre a vazão do sistema (output), ou seja, por transação. 
+
 ## Exemplo I
 
 Se 125 pacotes chegam em um roteador e ele leva em média 2 ms para tratar, calcule o Ui.
@@ -173,4 +178,138 @@ Therefore, each typical transaction demanded the respective times of each specif
 Maciel, Paulo Romero Martins. Performance, Reliability, and Availability Evaluation of Computational Systems, Volume I (p. 370). CRC Press. Edição do Kindle. 
 :::
 
-A server was monitored for T = 2h considering a specific workload.  In this period, the average processor utilization was Ucpu = 0.38, and C0 = 374,356  transactions were processed. Each transaction, on average, reads/writes 18,427.44  bytes from/to the disk. The average time to read or write one sector (512 bytes)  from/to the disk is 0.26 ms. The transaction throughput is 
+A server was monitored for T = 2h considering a specific workload.  In this period, the average processor utilization was Ucpu = 0.38, and C0 = 374,356  transactions were processed. Each transaction, on average, reads/writes 18,427.44  bytes from/to the disk. The average time to read or write one sector (512 bytes)  from/to the disk is 0.26 ms. The transaction throughput is..
+
+## Revisão
+
+T
+A0
+C0
+Ai
+Ci
+Bi
+
+Lambda_o = Taxa de Chegada sistema
+Xo = Vazão do sistema
+Lambda_i = Taxa de Chegada ao recurso
+Xi = Vazão do Recurso
+Ui = Utilização do Recurso i
+Vi = Número De visitas do recurso por transação
+Si = Service Time
+
+Ui = (Bi/Ci)x(Ci/T)
+Ui = Si x Xi = Si x Lambda_i
+Xi = X0 x Vi
+Ui = Di x X0 = Di x Lambda_0
+
+## Littles's Law
+
+O número de transações do sistema é a taxa de chegada vezes o tempo de permanência (residence/response time) no sistema.
+
+N = Lambda x R
+R: Residence/REsponse time
+
+ISso para sistemas balanceados, onde, aproximadamente Lambda = X
+
+Logo:
+
+N = X x R
+
+O residence time pode ser dividido entre o tempo de espera mais o tempo que se demanda do recurso.
+
+R = W + D
+W: Tempo de Espera
+D: Tempo que se Demanda do Recurso
+
+Quando não tem revisita ao sistema:
+
+R = W + S
+W: Tempo de Espera
+S: Tempo de Serviço
+
+Quando o sistema não tem fila, significa que, no máximo, tenho 1 transação no sistema. 
+
+R = W + D = W + S
+Se não tivermos fila, temos que:
+
+R = D = S
+
+Ou seja, 
+
+Se U = Si x Xi 
+ou U = Si x Lambda_i (para sistemas balanceados)
+
+Então temos que:
+
+U = R x Lambda_i
+
+**Quando não tem fila, Little's Law = Utilization Law**
+
+## Resumo
+
+T
+A0
+C0
+Ai
+Ci
+Bi
+
+Lambda_0 = A0/T
+X0 = C0/T
+LAmbda_i = Ai/T
+Xi = Ci/T
+Si = Bi/Ci
+Vi = Xi/X0 = Ci/C0
+Ui = Bi/T
+
+Ui = Si x Xi = Si x Lambda_i (balanceado)
+Ui = Di x X0 = Di x Lambda_0 (balanceado)
+Di = Vi x Si
+
+N = Lambda x R = X x R
+R = W + D = W + S
+
+## General Response Time Law
+
+N = X x R 
+
+Dado que N é N = N1 + N2 + --- + Nm
+
+Temos que R = Somatoria de i a M para (Vi x Ri)
+
+## Interactive Respone Time Law
+
+R = (N/X) - Z
+
+Ou
+
+X = (N)/(R+Z)
+
+Onde Z: Tempo que o usuário fica pensando para fazer uma nova interação.
+
+## Bottleneck Analysis (ou Análise de Limites)
+
+São situações extremas. Onde não posso garantir que a vazão que seja maior que um determinado valor. Ou não posos garantir que o tempo de resposta seja menor que um determinado valor. 
+
+### Em paralelo
+
+X0 <= (1/Dmax)
+
+R >= (N x Dmax) - Z
+
+### Em série
+
+R >= Somatório de Di
+
+Como 
+
+X = (N)/(R+Z) <= (N)/(D+Z)
+Se Z=0
+
+X <= N/D
+
+Portanto
+
+X <= min{(1/Dmax),(N/D)}
+São assintotas de curvas
+É a vazão máxima desse sistema.
