@@ -39,6 +39,8 @@ TEm mais de uma coisa aconecendo dentro de um sistema opreacional, por exemplo.
 | Aula21             |                                |                                | -                   |
 
 
+mermaid
+
 ```mermaid
 graph TD;
     A-->B;
