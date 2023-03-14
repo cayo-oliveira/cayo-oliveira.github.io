@@ -219,6 +219,10 @@ O residence time pode ser dividido entre o tempo de espera mais o tempo que se d
 
 R = W + D
 W: Tempo de Espera
+Aqui eu considero a fila infinita, sem descarte.
+Se tivermos fila finita, haveria discarte.
+E aqui só estou olhando para aquele recurso. Sem revisita.
+
 D: Tempo que se Demanda do Recurso
 
 Quando não tem revisita ao sistema:
@@ -276,6 +280,9 @@ N = X x R
 Dado que N é N = N1 + N2 + --- + Nm
 
 Temos que R = Somatoria de i a M para (Vi x Ri)
+
+R = ∑ᵢ₌₁ ᴹ (Vᵢ x Rᵢ)
+
 
 ## Interactive Respone Time Law
 
