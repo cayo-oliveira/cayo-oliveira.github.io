@@ -20,6 +20,12 @@ const config = {
   url: 'https://cayo-oliveira.github.io',
   baseUrl: '/',
   projectName: 'cayo-oliveira.github.io',
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   stylesheets: [
     {
       href: '/katex/katex/katex.min.css',
@@ -48,6 +54,7 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
 
   
   
