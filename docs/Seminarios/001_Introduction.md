@@ -12,32 +12,40 @@ TEm mais de uma coisa aconecendo dentro de um sistema opreacional, por exemplo.
 
 ## Cronograma de Estudos
 
-| Video              | Assunto                        | Encontro Presencial            | Obs                 |
+| Video          | Assunto                          | Presencial                        | Observação |
 |--------------------|--------------------------------|--------------------------------|---------------------|
-| Aula00 - Part 02   | Máquina de estados             | 9-Mar                          |                     |
-| Aula01             |                                |                                |                     |
-| Aula02             | Máquina de estados             | 16-Mar                         |Apresentar modelo simples do trabalho|
-| Aula03             | Modelando processos            |                                |                     |
-| Aula04             | Modelando Processos            | 23-Mar                         |                     |
-| Aula05             |                                |                                |                     |
-| Aula06             |                                |                                |                     |
-| Aula07 - Part1     | Redes de Petri                 | 30-Mar                         |                     |
-| Aula07 - Part2     |                                |                                |                     |
-| Aula08             |                                |                                |                     |
-| Aula09             | Redes de Petri                 | 6-Mar                          |                     |
-| Aula10             |                                |                                |                     |
-| Aula11             | Redes de Petri                 | 13-Apr                         |                     |
-| Aula12             |                                |                                |                     |
-| Aula13             | Redes de Petri                 | 20-Apr                         |                     |
-| Aula14             |                                |                                |                     |
-| Aula15             | Redes de Petri - propriedades  | 27-Apr                         |                     |
-| Aula16             |                                |                                |                     |
-| Aula17             | Redes de Petri - Propriedades  | 4-May                          |                     |
-| Aula18             |                                |                                |                     |
-| Aula19             | Redes de Petri - Propriedades  | 11-May                         |                     |
-| Aula20             |                                |                                |                     |
-| Aula21             |                                |                                |                     |
+| Aula00 - Part 02   | Máquina de estados             | 9-Mar                          | -                   |
+| Aula01             |                                |                                | -                   |
+| Aula02             | Máquina de estados             | 16-Mar                         | -                   |
+| Aula03             | Modelando processos            |                                | -                   |
+| Aula04             | Modelando Processos            | 23-Mar                         | -                   |
+| Aula05             |                                |                                | -                   |
+| Aula06             |                                |                                | -                   |
+| Aula07 - Part1     | Redes de Petri                 | 30-Mar                         | -                   |
+| Aula07 - Part2     |                                |                                | -                   |
+| Aula08             |                                |                                | -                   |
+| Aula09             | Redes de Petri                 | 6-Mar                          | -                   |
+| Aula10             |                                |                                | -                   |
+| Aula11             | Redes de Petri                 | 13-Apr                         | -                   |
+| Aula12             |                                |                                | -                   |
+| Aula13             | Redes de Petri                 | 20-Apr                         | -                   |
+| Aula14             |                                |                                | -                   |
+| Aula15             | Redes de Petri - propriedades  | 27-Apr                         | -                   |
+| Aula16             |                                |                                | -                   |
+| Aula17             | Redes de Petri - Propriedades  | 4-May                          | -                   |
+| Aula18             |                                |                                | -                   |
+| Aula19             | Redes de Petri - Propriedades  | 11-May                         | -                   |
+| Aula20             |                                |                                | -                   |
+| Aula21             |                                |                                | -                   |
 
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
 
 ## Conteúdo 
 
