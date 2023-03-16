@@ -216,3 +216,95 @@ Aumentar a carga de trabalho do sistema, fazendo com que o componente tenha que 
 Aumentar o número de threads ou processos que executam no componente, o que pode melhorar o desempenho geral do sistema e, consequentemente, aumentar o tempo de serviço e a utilização do componente.
 
 É importante lembrar que qualquer alteração no tempo de serviço pode ter um impacto significativo em outras métricas de desempenho do sistema, como a taxa de chegada de transações (λ) e a taxa de processamento (X). Por isso, é necessário avaliar cuidadosamente os possíveis efeitos colaterais de qualquer mudança antes de implementá-la.
+
+## Utilization Law
+
+Reacptulando, durante um período de observação **T**, temos a utilização de um componente **i** como sendo **Bᵢ**, onde o a **utilização**, dado em percentual, é **Uᵢ = Bᵢ/T**.
+
+Se observarmos o número de operações finalizadas **Cᵢ**, podemos ajustar a fórmula da utilização e obter a lei da utilização.
+
+**Uᵢ** = (Bᵢ/T)x(Cᵢ/Cᵢ)
+**Uᵢ** = (Bᵢ/Cᵢ)x(Cᵢ/T)
+
+Recaptulando mais uma vez, temos que o número de finalizações de um recurso, **Cᵢ** sobre o período observado **T**, dá a vazão desse recurso, **Xᵢ**. E o tempo de ocupação de um recurso, **Bᵢ**, sobre o número de finalizações desse recurso **Cᵢ** nos dá o **tempo de serviço**, que é o tempo que um recurso leva para finalizar uma transação.
+
+Ou seja, a **lei da utilização** é:
+
+**Uᵢ** = Sᵢ x Xᵢ
+
+O gargalo de um sistema é aquele componente que apresenta a maior utilização. 
+Quando uma carga excessiva é aplicada em um sistema, o primeiro componente que atingir 100% de utilização será o componente gargalo.
+
+## Forced Flow Law
+
+A vazão de um sistema, como dito anteriormente, é dado pelo número de finalizações do sistema sobre o período de tempo observado. 
+
+Se aplicarmos o número de finalizações do sistema, podemos obter a lei forçada de fluxo, que representa a relação entre o número de visitas de um sistema e a vazão do sistema. OU seja, 
+
+**Xᵢ** = (Cᵢ/T)x(C₀/C₀)
+**Xᵢ** = (Cᵢ/C₀)x(C₀/T)
+
+**A Forced Flow Law** é:
+
+**Xᵢ** = Vᵢ x X₀
+
+## Demand Law
+
+O conceito de **tempo demandado** ou **serviço demandado** está relacionado ao conjunto de requisições que um recurso precisa dado o sistema.
+
+É um conceito importante para a noção de performance de um modelo.
+
+O **tempo demandado que uma transação requer de um recurso** é o tempo que a transação  leva sendo processada.
+
+Dado a **lei da utilização** e a **lei do fluxo forçado**, temos que:
+
+**Uᵢ** = Sᵢ x Xᵢ
+**Xᵢ** = Vᵢ x X₀
+
+Substituindo,
+
+Uᵢ = Sᵢ x **Xᵢ** = Sᵢ x Vᵢ x X₀
+
+Dado que **Dᵢ** = Sᵢ x Vᵢ, temos então que a **lei da demanda** é:
+
+**Dᵢ** = Uᵢ/X₀
+
+Lembrando, o que buscamos aqui é o **tempo que uma transação demanda de um recurso**, em outras palavras **é o tempo requerido por uma transação para ser executava por um recurso**.
+
+O **gargalo** do sistema, além de ser o recurso com o maior tempo de utilização, é também aquele componente com o **maior tempo demandado por uma transação**.
+
+## Exemplo em Aula
+
+T = 4h = 240 min = 14400 s
+C₀ = 400000 transações
+Usa = 0.555556 
+Usbd = 0.833333
+Ud = 0.416667
+USaut = 0.277778
+
+QUal a vazão máxima ?
+
+N <= 5
+
+X <= Min{1/Dmax, N/D}
+
+Dmax = Somatoria dos D
+
+D = U/X0
+
+X0 = 400000 / 14400
+X0 = 27.8
+
+D = (0.555556 + 0.833333 + 0.41667 + 0.277778)/27.8
+D = 0.07494017985611512
+D = 75 ms
+Dmax = 30 ms
+
+Quando N = 1,2,3,4,5
+X1 = Min(1/30, 1/75)
+X2 = Min(1/30, 2/75)
+X3 = Min(1/30, 3/75)
+X4 = Min(1/30, 4/75)
+X5 = Min(1/30, 5/75)
+
+

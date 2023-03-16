@@ -341,6 +341,8 @@ Estados: FL, FU
 Eventos: 1F1, 3F1, 1F3, 3F3
 Estado inicial: FL
 Função de transição: δ(FL, 1F1) = FU, δ(FL, 3F1) = FU, δ(FU, 1F1) = FL, δ(FU, 3F1) = FL
+
+
 Para fazer a composição paralela, é necessário criar um novo conjunto de estados, eventos e função de transição. A composição paralela dos autômatos é dada por:
 
 A = F1 x G1 = ({(I, L)}, {p, l}, δ, (I, L), {(I, L)})
@@ -406,3 +408,11 @@ dot.edge(str(state), str(next_state), label=event)
 Renderiza o grafo
 dot.render('grafo')
 
+## IDES
+
+
+### LaTex MikTeX
+C:\Users\user\AppData\Local\Programs\MiKTeX
+
+### Ghostscript
+C:\Program Files\gs\gs10.00.0
