@@ -1,53 +1,33 @@
 ---
-sidebar_position: 1
+sidebar_position: 7
 ---
 
-# Problema
+# MVP Modelagem Trabalho
+
+O primeiro subsistema, chamado Sistema #1, é responsável pelo processamento e atualização dos dados, enquanto o segundo subsistema, chamado Sistema #2, permite que os clientes façam upload de informações.
+
+No Sistema #1, os dados são armazenados em um repositório S3 de entrada, que é atualizado periodicamente. Em seguida, o processamento dos dados é realizado por meio do serviço EMR, que extrai informações da origem e as envia para a plataforma DBT. A partir daí, as dimensões e os fatos são processados pelo EMR, que gera a saída em um repositório S3. Os dados processados são consultados usando o serviço Athena e visualizados no QuickSight, onde os clientes podem observar e analisar os resultados.
+
+No Sistema #2, os clientes podem fazer upload de dados diretamente para o repositório S3 de entrada, permitindo que essas informações sejam incorporadas ao processo de análise e visualização no Sistema #1.
+
+A combinação desses dois subsistemas permite um fluxo contínuo de dados e análises, proporcionando aos clientes informações atualizadas e insights valiosos sobre seus dados.
+
+## Representação
 
 ```mermaid
 graph LR
-    subgraph AWS
-        S3_Entrada -- Dados_Sistema--> S3_Entrada
-        S3_Entrada -- DBT_Transforma --> S3_Saida
-        S3_Saida -- Airflow_Agenda --> QuickSight
-        QuickSight -- Leitura_Tempo_Real --> QuickSight
-        QuickSight -- Dados --> Cliente
-    end
+subgraph Sistema#1
+        S3_Entrada -- Sistema_Atualiza --> S3_Entrada
+        S3_Entrada -- EMR_Processa_Origem --> DBT
+        DBT -- EMR_Processa_Dim_e_Fato --> S3_Saida
+        S3_Saida -- Athena --> QuickSight
+        Cliente -- Observa --> QuickSight
+end
 ```
 
-Este sistema de processamento de dados em nuvem foi construído utilizando a plataforma da AWS. Os dados são carregados em um bucket no S3_Entrada, onde são processados usando o serviço EMR_Processa. Após o processamento, os dados são transformados usando o serviço DBT_Transforma e então são transferidos para outro bucket no S3_Saida. O fluxo de dados é gerenciado pelo Airflow_Agendamento, que é responsável por agendar e orquestrar as tarefas de processamento e transformação. Por fim, os dados são visualizados pelo cliente usando o QuickSight_Visualizacao. Este sistema permite o processamento escalável e eficiente de grandes volumes de dados em um ambiente de nuvem seguro e confiável.
-
-Entrada de dados em S3_Entrada
-Processamento de dados em EMR_Processa
-Transformação de dados em DBT_Transforma
-Saída de dados em S3_Saida
-Gerenciamento de fluxo de dados com Airflow_Agendamento
-Visualização de dados com QuickSight_Visualizacao
-
-## Conjunto de Estados
-S = {S3_Entrada, S3_Saida, EMR_Processa, DBT_Transforma, Airflow_Agendamento, QuickSight_Visualizacao}
-
-
-## Alfabeto
-E = {processar, transformar, transferir, agendar, visualizar}
-
-
-## Funções de Transição
-f: S x E -> S
-- f(S3_Entrada, processar) = EMR_Processa
-- f(EMR_Processa, transformar) = DBT_Transforma
-- f(DBT_Transforma, transferir) = S3_Saida
-- f(S3_Entrada, agendar) = Airflow_Agendamento
-- f(Airflow_Agendamento, processar) = EMR_Processa
-- f(EMR_Processa, transformar) = DBT_Transforma
-- f(DBT_Transforma, transferir) = S3_Saida
-- f(S3_Saida, visualizar) = QuickSight_Visualizacao
-
-## Estado Inicial
-S0 = S3_Entrada
-
-
-## Estado Final
-Sm = QuickSight_Visualizacao
-
-Nesta máquina de estados, o conjunto de estados S é composto pelos seis estados: S3_Entrada, S3_Saida, EMR_Processa, DBT_Transforma, Airflow_Agendamento e QuickSight_Visualizacao. O alfabeto E é composto pelas cinco ações: processar, transformar, transferir, agendar e visualizar. A função de transição f mapeia cada estado e ação para um novo estado. O estado inicial é S3_Entrada e o estado final é QuickSight_Visualizacao.
+```mermaid
+graph LR
+    subgraph Sistema#2
+        Cliente -- upload --> S3_Entrada
+    end
+```

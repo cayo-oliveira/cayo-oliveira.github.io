@@ -19,3 +19,4 @@ sidebar_position: 1
 5. Para o meu modelo, eu considero sem espera (sem fila) ?
 6. R = W + D = W + S e N = R x Lambda ou X x R. Eu posso usar N = W x Lambda com fila ?
 7. Bottlenec Analysis em um sistema AWS
+8. Por que λᵢ não pode ser bits por segundo ?
