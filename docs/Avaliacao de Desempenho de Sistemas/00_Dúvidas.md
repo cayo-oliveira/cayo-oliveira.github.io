@@ -2,21 +2,32 @@
 sidebar_position: 1
 ---
 
-# Dúvidas Aula 09/03/2023
+# Dúvidas e Cronograma
 
-- AUla 01 - ok
-- Aula 02
-- Aula 03
-- AUla 04
-- Tool: OL - Botlenecks
+## Cronograma de Estudos
 
-## Análise Operacional
-
-1. Se a soma dos throughtput dos recursos forem iguais as somas dos throughtput do sistema, eu tenho um sistema balanceado ?
-2. Na utilization law, qual a diferença entre Xi e Lambda_i quando Ui = Si x Xi = Si x Lambda_i
-3. Qual a diferença do Residence/REsponse Time (R) e o Bi
-4. O que é revisita ao sistema ?
-5. Para o meu modelo, eu considero sem espera (sem fila) ?
-6. R = W + D = W + S e N = R x Lambda ou X x R. Eu posso usar N = W x Lambda com fila ?
-7. Bottlenec Analysis em um sistema AWS
-8. Por que λᵢ não pode ser bits por segundo ?
+| Video              | Assunto                        | Presencial                     | Observação          |
+|--------------------|--------------------------------|--------------------------------|---------------------|
+| Aula00             | Variaveis Operacionais         | 9-Mar                          | -                   |
+| Aula01             | Métricas Deriv                 |                                | -                   |
+| Aula02             | Leis Operacionais              | 16-Mar                         | -                   |
+| Aula03             | Littles Law                    |                                | -                   |
+| Aula04             | Exemplos                       | 23-Mar                         | -                   |
+| Aula05             | BottleNeck Analysis            |                                | -                   |
+| Aula06             | Exemplos Métricas Windows      |                                | -                   |
+| Aula07             | Exemplos Métricas Linux        | 30-Mar                         | -                   |
+|                    |                                |                                | -                   |
+|                    |                                |                                | -                   |
+|                    |                                | 6-Mar                          | -                   |
+|                    |                                |                                | -                   |
+|                    |                                | 13-Apr                         | -                   |
+|                    |                                |                                | -                   |
+|                    |                                | 20-Apr                         | -                   |
+|                    |                                |                                | -                   |
+|                    |                                | 27-Apr                         | -                   |
+|                    |                                |                                | -                   |
+|                    |                                | 4-May                          | -                   |
+|                    |                                |                                | -                   |
+|                    |                                | 11-May                         | -                   |
+|                    |                                |                                | -                   |
+|                    |                                |                                | -                   |

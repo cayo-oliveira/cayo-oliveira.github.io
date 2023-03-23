@@ -352,3 +352,53 @@ for resource_name, resource_data in resources.items():
 Ao executar este código no Jupyter Notebook, ele irá gerar gráficos de linha para cada métrica coletada pelo CloudWatch. Certifique-se de substituir os nomes dos recursos pelos nomes reais dos recursos em sua conta da AWS e ajustar o start_time e end_time conforme necessário.
 
 Os gráficos gerados podem ser usados para visualizar e analisar as tendências nas métricas ao longo do tempo, ajudando você a identificar padrões de desempenho e potenciais problemas.
+
+Exemplo simulado rápido:
+Suponha que as métricas abaixo sejam os dados fictícios para os recursos listados no dicionário resources:
+
+```python title="Simular só para testar rapido :)"
+# Amazon S3
+NumberOfObjects: 5000
+BucketSizeBytes: 1500000000
+
+# Amazon EMR
+IsIdle: 0
+AppsRunning: 10
+AppsPending: 3
+ContainerAllocated: 20
+ContainerPending: 5
+YARNMemoryAvailablePercentage: 70
+
+# Amazon Athena
+QueryExecutionTime: 20
+EngineExecutionTime: 5
+```
+
+Com base nesses dados fictícios, podemos criar uma função get_metric_value que simplesmente retorna os valores das métricas em vez de recuperá-los da AWS. Por exemplo:
+
+```python title="get_metric_value"
+def get_metric_value(namespace, metric_name, dimensions, start_time, end_time):
+    # Aqui, podemos retornar os valores de métricas fictícios com base nas informações do recurso e nome da métrica.
+    if metric_name == "NumberOfObjects":
+        return 5000
+    elif metric_name == "BucketSizeBytes":
+        return 1500000000
+    elif metric_name == "IsIdle":
+        return 0
+    elif metric_name == "AppsRunning":
+        return 10
+    elif metric_name == "AppsPending":
+        return 3
+    elif metric_name == "ContainerAllocated":
+        return 20
+    elif metric_name == "ContainerPending":
+        return 5
+    elif metric_name == "YARNMemoryAvailablePercentage":
+        return 70
+    elif metric_name == "QueryExecutionTime":
+        return 20
+    elif metric_name == "EngineExecutionTime":
+        return 5
+```
+
+Com essas informações, podemos executar o código do Jupyter Notebook e ver as métricas fictícias sendo impressas no console.

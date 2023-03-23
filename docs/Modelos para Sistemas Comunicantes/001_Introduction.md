@@ -17,7 +17,7 @@ TEm mais de uma coisa aconecendo dentro de um sistema opreacional, por exemplo.
 | Aula00 - Part 02   | Máquina de estados             | 9-Mar                          | -                   |
 | Aula01             |                                |                                | -                   |
 | Aula02             | Máquina de estados             | 16-Mar                         | -                   |
-| Aula03             | Modelando processos            |                                | -                   |
+| Aula03             | Modelando processos            | 18-Mar                         | #1 Lista Exercício  |
 | Aula04             | Modelando Processos            | 23-Mar                         | -                   |
 | Aula05             |                                |                                | -                   |
 | Aula06             |                                |                                | -                   |
