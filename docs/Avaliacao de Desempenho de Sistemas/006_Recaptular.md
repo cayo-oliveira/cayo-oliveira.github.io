@@ -273,38 +273,239 @@ Lembrando, o que buscamos aqui é o **tempo que uma transação demanda de um re
 
 O **gargalo** do sistema, além de ser o recurso com o maior tempo de utilização, é também aquele componente com o **maior tempo demandado por uma transação**.
 
-## Exemplo em Aula
+## Little's Law
 
-T = 4h = 240 min = 14400 s
-C₀ = 400000 transações
-Usa = 0.555556 
-Usbd = 0.833333
-Ud = 0.416667
-USaut = 0.277778
+A lei de Little lida com itens em um sistema de fila. Esses itens podem variar desde pessoas, pacotes, requisições, linha de produção, etc. 
 
-QUal a vazão máxima ?
+```mermaid
+graph LR 
+subgraph T
+λ₀ --> N
+N --> System
+System --> C₀
+end
+```	
 
-N <= 5
+**N**: Número de itens (transações, pessoas, pacotes) no sistema, em fila. 
+**R**: Response Time (ou Residence Time)
 
-X <= Min{1/Dmax, N/D}
+O **Response Time** pode ser decomposto pelo **tempo de espera** e pelo tempo **demandado pela transação**.
 
-Dmax = Somatoria dos D
+**R**= W + D
 
-D = U/X0
+**W**: Tempo de Espera
+**D**: Tempo Demandado pela Transação
 
-X0 = 400000 / 14400
-X0 = 27.8
+N = λ x (W + D)
 
-D = (0.555556 + 0.833333 + 0.41667 + 0.277778)/27.8
-D = 0.07494017985611512
-D = 75 ms
-Dmax = 30 ms
+Considedre agora que o **sistema tem apenas 1 recurso** (como se fosse 1 servidor apenas):
 
-Quando N = 1,2,3,4,5
-X1 = Min(1/30, 1/75)
-X2 = Min(1/30, 2/75)
-X3 = Min(1/30, 3/75)
-X4 = Min(1/30, 4/75)
-X5 = Min(1/30, 5/75)
+O número de visitas do sistema, **V = 1**. Já que Cᵢ/C₀ = 1. Além disso temos que **W = 0**, ou seja, não temos tempo de espera. Com essas considerações, podedmos falar que:
 
+Se R = W + D e W=0, termos que **R = D**.
+
+O tempo de demanda, ou **Demand Time** é Dᵢ = Uᵢ/X₀ ou Dᵢ = Sᵢ x Vᵢ.
+Então,
+
+R = S x V mas como V = 1 então **R = S**.
+
+Ou esja, o tempo de resposta, ou residence time, é o tempo de serviço do sistema (caso tenha 1 recurso).
+
+Voltando a fórmula de N, temos que N = λ x (W + D), W = 0 e D = S, então N = λ x S, que é a **Lei de Utilização onde N = U = λ x S** que é uma simplificação da lei de utilização, que para sistemas balanceados X = λ.
+
+### E quando tem fila ?
+
+Quando existe **fila, W**, temos que levar em consideração a **Little's Law** onde **N = λ x R** e **R = (W + S)**.
+
+Geralmente, eu preciso calcular:
+1. **Rate Input do sistema, λ₀**
+2. **Residence Time, R**, que é **uma média das amostras de N** pelo Rate Input, λ₀, do sistema, ou seja, **R = N̄ / λ₀**.
+3. **Tempo de Espera, W**, que é **uma média das amostras de Nₕ da fila** pelo Rate Input, λ₀, do sistema, ou seja, **W = N̄ₕ / λ₀**. 
+4. Calcular o tempo de serviço do sistema, **Service Time, S** que é **S = R - W**, ou seja, o tempo de serviço do sistema é o residence time menos o tempo de espera. 
+
+Geralmente eu quero aumentar o Service Time, até que lim(R - W) → 0.
+
+## General Response Time Law
+
+Em um **sistema distribuído, temos vários recursos, k**. Então temos que aplicar o Little's Law em cada recurso k para obter a lei geral de resposta.
+
+Em um sistema, o **número de transações (ou requisições), N**, é á **soma de Nᵢ onde i vai de 1 a k**.
+
+**N₀** = ∑Nᵢ = ∑N₁₋ₖ 
+
+Dado que, para um sistema balanceado, temos que **X₀ = λ₀ e pela Little's Law**:
+
+N₀ = λ₀ x R = X₀ x R
+
+N₀ = X₀ x R
+
+Eu quero saber o **Residence Time** então
+
+R = N₀/X₀, ou seja, 
+
+**R = ∑N₁₋ₖ/X₀**
+
+Dado que Nᵢ = Xᵢ x Rᵢ e que **Vᵢ = Xᵢ/X₀** temos que, para **sistemas distribuidos com k recursos**:
+
+**R = ∑Vᵢ x Rᵢ = ∑V₁₋ₖ x Rᵢ**
+
+onde
+
+**∑Vᵢ = ∑V₁₋ₖ = ∑(Xᵢ/X₀)₁₋ₖ**
+
+## Interactive Response Time Law
+
+Em um sistema interatico, os usuários (clientes) geram requisições para um servidor ou um conjunto de servidores, como um sistema em cloud. 
+
+Depois de um período de tempo **Z** que representa o **tempo que o usuário pensa para que a transação seja executada**, temos a **Littles's Law considerando o comportamento do usuário**.
+
+Considere que:
+
+**R'** = R + Lₜ + Lᵣ
+
+Que é o tempo de resposta que o usuário tem considerando o **tempo de resposta do sistema, R**, o **tempo de resposta da requisição, L** e o **tempo de resposta do resultado, Lᵣ**. 
+
+**Lₜ**: Request Time
+**Lᵣ**: Result Time
+
+O usuário então precisa de **Z tempo** para pensar, **antes de executar a próxima transação**.
+
+Então, o **período entre duas tansições** é:
+
+Zthinking = R' + Z
+
+Então, pensando nisso, tenho que o número de requisições é o total de tempo observado sobre o tempo entre as transições (dado que esse tempo é o tempo que uma transição leva desde que o usuário começou a pensar até o momento que ele recebeu a resposta). Se desconsiderarmos o os tempos de requisição e de resposta (Lₜ + Lᵣ = 0), temos que o **Número de Requisições Processadas, Cᵢ**:
+
+**Cᵢ** = T/(R + Z)
+
+Considerando que **N clientes participam do sistema**:
+
+**C₀** = N x Cᵢ = N x [T/(R + Z)]
+
+```mermaid
+graph LR 
+subgraph Sistema
+Cliente_N -- Z --> Cliente_N
+Cliente_N -- Lₜ --> Servidor
+Servidor -- R --> Servidor
+Servidor -- Lᵣ --> Cliente_N
+end
+```
+
+Lembrado a **vazão do sistema, X₀**:
+
+
+X₀ = C₀/T = (N x Cᵢ)/T = { N x [T/(R + Z)] } / T
+
+Que, simplificando, temos:
+
+**R** = (N/X) - Z
+
+Ou seja, o tempo de resposta do sistema é o número de clientes sobre a vazão, subtraindo o tempo de resposta.
+
+Se desconsiderarmos o tempo de espera do sistema, W = 0, temos que:
+
+**X** = N/(D+Z)
+
+Lembrando que R = D + W, quando W = 0 então R = D. Então R = (N/X) - Z ⇒ D = (N/X) - Z ⇒ D + Z = N/X ⇒ X = N/(D+Z)
+
+Observe também que, se Z = 0, ou seja, lim(z) → 0, temos que:
+
+X = N/D, ou, D = N/X
+
+Dado que **para sistemas balanceado, X = λ então temos a Little's Law: D = N/λ = N/X**.
+
+## Bottleneck Analysis and Bounds
+
+Lembre que da lei de utilização, temos a lei da demanda, que é:
+
+**Dᵢ** = Uᵢ/X₀
+
+Para k recursos, temos que aquele **k que tiver a maior demanda, Dₖ, é o recurso mais demandado**
+
+Para analisarmos o gargalo de um sistema, temos que modelar ele de duas formas:
+
+1. Considerando que cada nó executa apenas 1 transação e essa transação é completamente executada por 1 recurso apenas. Então em um cenário com k recursos, eu não sei qual k aquela única transação vai ser executada, podendo ser executada no recurso 1,2,3...n;
+
+2. Consideramos o cenário oposto, onde uma transação é completada por todos os k recursos do sistema. Ou seja, eu tenho que passar por todos os k recursos para considerar uma transação completa do sistema.
+
+### Cenário #1
+
+Nesse cenário, temos que o **gargalo do sistema é D_gargalo = Dₘₐₓ = max(D₁₋ₖ) = max(D1,D2,D3...Dn)**.
+
+Dado um sistema, **o recurso com utilização máxima é Uₘₐₓ = 1**, posso garantir que o Dmáximo que um recurso pode atingir é:
+
+Dₘₐₓ ≤ Uₘₐₓ/X₀
+
+**X₀** ≤ 1/Dₘₐₓ
+
+Então, voltando ao **Interactive Response Time Law onde R = (N/X) - Z**:
+
+**R** ≥  (N x Dₘₐₓ) - Z
+
+Onde eu posso garantir que nesse sistema, o tempo de resposta é maior ou igual a quantidade de transações do sistema, vezes o Dₘₐₓ menos o thinking time. Caso Z = 0, R >= N x Dmax, ou seja, o tempo de resposta é pelo menos o Dmax.
+
+Caso Z=0, caso desse cenário:
+
+**R** ≥ (N x Dₘₐₓ)
+
+### Cenário #2
+
+Fazendo o mesmo exercício para o cenário #2, temos que o tempo de resposta é o somátorio do tempo de resposta de todos os k recursos, logo: R₀ = R1 + R2 + ... + Rk
+
+Dado que Rᵢ = Wᵢ + Sᵢ, R = ∑Vᵢ x Rᵢ e Dᵢ = Vᵢ x Sᵢ:
+
+**R** ≥ D1 + D2 + ... Dn
+
+Onde eu posso garantir que o residence time do sistema é pelo menos a somatória dos residence time, desconsiderando o tempo de espera,  lim(W) → 0 e R ≥ S e R ≥ ∑V₁₋ₖ x S₁₋ₖ então R ≥ ∑D₁₋ₖ
+
+ou seja:
+
+**D** = ∑D₁₋ₖ
+
+e
+
+Quando lim(W) → 0
+
+**R** ≥ ∑D₁₋ₖ
+
+O tempo de demanda do sistema é o somatório dos tempos de demanda de cada recurso.
+
+Considerando agora a **Lei Geral R = (N/X) - Z** temos que:
+
+X = N / (R+Z) e que para N=1, do cenário 2 e considerando que R=D (pelo menos) temos que:
+
+Dado que, geralmente, Z = 0
+**X** ≤ N/D
+
+Ou seja, a vazão do sistema é no máximo o número de clientes que eu tenho sobre o tempo de demanda do sistema. 
+
+Levando em consideração o cenário #2 onde N = 1, temos que:
+
+**R₀** ≤ 1/Dₘₐₓ
+
+### Sistema completo
+
+Então dado que:
+
+1. Para o cenário 1: **R₀** ≥ (N x Dₘₐₓ) - Z
+2. Para o cenário 2: **R₀** ≤ 1/Dₘₐₓ
+
+Então, temos que:
+
+**X** ≤ Min(1/Dmax, N/D)
+
+e
+
+**R** ≥ Max[D, (N x Dₘₐₓ) - Z]
+
+O ponto de intersecção de duas curvas, o Knee (joelho), é então: 
+
+**Knee** = (D + Z)/Dₘₐₓ
+
+Considerando Z = 0 temos:
+
+**Knee** = D/Dₘₐₓ
+
+## Gráficos de BottleNeck no Python
 
