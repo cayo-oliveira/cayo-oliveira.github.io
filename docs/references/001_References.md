@@ -15,6 +15,11 @@ Pernambuco: Universidade Federal de Pernambuco, 1996. 187 p.
 ```
 :::
 
+:::info Book
+```abnt title="Introduction to Discrete Event Systems"
+CASSANDRAS, C. G.; LAFORTUNE, S. Introduction to Discrete Event Systems. 2nd ed. New York: Springer, 2008.
+```
+:::
 
 ## Articles
 :::info Artigo
