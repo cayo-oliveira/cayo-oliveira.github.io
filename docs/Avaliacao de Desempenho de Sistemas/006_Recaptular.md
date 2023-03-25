@@ -279,11 +279,11 @@ A lei de Little lida com itens em um sistema de fila. Esses itens podem variar d
 
 ```mermaid
 graph LR 
-subgraph T
-λ₀ --> N
+
+Lambda --> N
 N --> System
-System --> C₀
-end
+System --> C
+
 ```	
 
 **N**: Número de itens (transações, pessoas, pacotes) no sistema, em fila. 
