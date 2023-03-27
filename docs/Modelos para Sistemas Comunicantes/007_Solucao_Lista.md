@@ -2,7 +2,8 @@
 sidebar_position: 16
 ---
 
-# Primeira Lista de Exercício
+# HUman Solution #1 List
+## Human Solutions in English
 
 :::info Book
 ```abnt title="Introduction to Discrete Event Systems"
@@ -10,7 +11,6 @@ CASSANDRAS, C. G.; LAFORTUNE, S. Introduction to Discrete Event Systems. 2nd ed.
 ```
 :::
 
-## Human Solutions in English
 
 1. **What do you understand by DES model?**
 

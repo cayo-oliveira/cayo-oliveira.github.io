@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# Systems and Models
+# Cap01 - Systems and Models
 
 :::info Book
 ```abnt title="Introduction to Discrete Event Systems"
@@ -375,10 +375,10 @@ A matriz $P'$ agora representa o sistema discreto não variante no tempo, inclui
 
 ## Revisão
 
-Além das equações de estado, também há a equação de saída, que descreve a relação entre as variáveis de estado e a saída do sistema. No exemplo do tanque de água, a equação de saída pode ser escrita como $y(t) = g(x(t),u(t),t)$, onde $y(t)$ é a vazão de saída do tanque e $g(x(t),u(t),t)$ é a função que descreve como a vazão de saída depende do nível de água e da taxa de entrada de água.
+Nesta sessão, exploramos conceitos fundamentais em sistemas dinâmicos e controle, como variáveis de entrada, variáveis de estado e a representação matemática dos sistemas. Vimos também que os sistemas dinâmicos podem ser lineares ou não-lineares, com a linearidade simplificando a análise e o projeto de sistemas. Além disso, abordamos o controle realimentado como uma maneira de ajustar a entrada do sistema para atingir um objetivo específico com base na saída medida.
 
-Durante esta sessão, aprendemos sobre alguns conceitos fundamentais em sistemas dinâmicos e controle. Em particular, vimos que os sistemas dinâmicos são representados por equações que descrevem a evolução de suas variáveis ao longo do tempo. Essas variáveis podem ser divididas em dois tipos: as variáveis de entrada, que representam as informações que o sistema recebe do ambiente externo, e as variáveis de estado, que representam as informações internas do sistema que mudam ao longo do tempo.
+Também discutimos sistemas black-box, onde o comportamento é determinado apenas pelas entradas e saídas, sem levar em conta o funcionamento interno do sistema. Em contraste, os sistemas de equações de estado são descritos por um conjunto de equações que relacionam as variáveis de estado e as entradas às saídas do sistema, geralmente na forma de equações diferenciais.
 
-Vimos também que as equações que descrevem os sistemas dinâmicos podem ser lineares ou não-lineares. A linearidade é uma propriedade importante que torna a análise e o projeto de sistemas mais simples e diretos. Finalmente, vimos que, em muitos casos, é possível controlar a evolução do sistema, alterando as variáveis de entrada. Isso é feito através do controle realimentado, em que a saída do sistema é medida e usada para ajustar a entrada de modo a alcançar um determinado objetivo.
+Ao longo desta sessão, usamos exemplos práticos, como o AWS Lambda, para ilustrar conceitos como espaços de estados discretos e transições de estados discretos. Ao aplicar esses conceitos a casos do mundo real, esperamos que você tenha uma compreensão mais clara e prática dessas ideias.
 
-Além disso, também aprendemos sobre os conceitos de sistemas black-box e sistemas de equações de estado. Sistemas black-box são sistemas cujo comportamento é determinado apenas pelas entradas e saídas do sistema, sem qualquer informação sobre seu funcionamento interno. Já os sistemas de equações de estado são sistemas descritos por um conjunto de equações que relacionam as variáveis de estado e as entradas do sistema às saídas do sistema. Essas equações são geralmente representadas como um sistema de equações diferenciais.
+Em resumo, sistemas dinâmicos e controle são áreas fundamentais da engenharia e ciências aplicadas, e a compreensão desses conceitos é essencial para projetar, analisar e controlar sistemas complexos em diversas aplicações. Ao dominar esses conceitos e saber como aplicá-los na prática, você estará mais bem preparado para enfrentar os desafios que surgem no campo da engenharia e das ciências aplicadas.

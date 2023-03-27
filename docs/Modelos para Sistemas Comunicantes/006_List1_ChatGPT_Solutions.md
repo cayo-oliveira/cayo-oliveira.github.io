@@ -2,14 +2,7 @@
 sidebar_position: 15
 ---
 
-# Primeira Lista de Exercício
-
-:::info Book
-```abnt title="Introduction to Discrete Event Systems"
-CASSANDRAS, C. G.; LAFORTUNE, S. Introduction to Discrete Event Systems. 2nd ed. New York: Springer, 2008.
-```
-:::
-
+# ChatGPT Solution #1 List
 ## ChatGPT Solutions in English
 
 1. **What do you understand by DES model?**
