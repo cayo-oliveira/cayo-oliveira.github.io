@@ -124,7 +124,7 @@ Ao usar simulação para avaliar o desempenho do sistema, você pode obter resul
 
 ## Macro-Atividades de um Processo de Avaliação de Desempenho (com modelagem)
 
-Para cada macro atividade, é importante usar o diagrama abaixo.
+Para cada macro atividade, é importante usar o diagrama anl????
 
 - Objetivo
 - Responsável

@@ -416,3 +416,5 @@ C:\Users\user\AppData\Local\Programs\MiKTeX
 
 ### Ghostscript
 C:\Program Files\gs\gs10.00.0
+
+C:\Users\user\Documents\My Kindle Content

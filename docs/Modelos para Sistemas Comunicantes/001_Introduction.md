@@ -2,13 +2,7 @@
 sidebar_position: 1
 ---
 
-# Modelos para Sistema COmunicantes
-
-## Objetivo
-- FOrmalismos para modelar e avaliar sistemas concorrentes.
-TEm mais de uma coisa aconecendo dentro de um sistema opreacional, por exemplo.
-
-- Descrever a sprincipais características
+# Modelos para Sistema Comunicantes
 
 ## Cronograma de Estudos
 
@@ -21,23 +15,29 @@ TEm mais de uma coisa aconecendo dentro de um sistema opreacional, por exemplo.
 | Aula04             | Modelando Processos            | 23-Mar                         | -                   |
 | Aula05             |                                |                                | -                   |
 | Aula06             |                                |                                | -                   |
-| Aula07 - Part1     | Redes de Petri                 | 30-Mar                         | -                   |
+| Aula07 - Part1     | Redes de Petri                 | 27-Apr                         | -                   |
 | Aula07 - Part2     |                                |                                | -                   |
 | Aula08             |                                |                                | -                   |
-| Aula09             | Redes de Petri                 | 6-Mar                          | -                   |
+| Aula09             | Redes de Petri                 |                                | -                   |
 | Aula10             |                                |                                | -                   |
-| Aula11             | Redes de Petri                 | 13-Apr                         | -                   |
+| Aula11             | Redes de Petri                 |                                | -                   |
 | Aula12             |                                |                                | -                   |
-| Aula13             | Redes de Petri                 | 20-Apr                         | -                   |
+| Aula13             | Redes de Petri                 |                                | -                   |
 | Aula14             |                                |                                | -                   |
-| Aula15             | Redes de Petri - propriedades  | 27-Apr                         | -                   |
+| Aula15             | Redes de Petri - propriedades  | 11-May                         | -                   |
 | Aula16             |                                |                                | -                   |
-| Aula17             | Redes de Petri - Propriedades  | 4-May                          | -                   |
+| Aula17             | Redes de Petri - Propriedades  | 25-Jun                         | -                   |
 | Aula18             |                                |                                | -                   |
-| Aula19             | Redes de Petri - Propriedades  | 11-May                         | -                   |
+| Aula19             | Redes de Petri - Propriedades  | 08-Jun                         | -                   |
 | Aula20             |                                |                                | -                   |
 | Aula21             |                                |                                | -                   |
 
+
+## Objetivo
+- FOrmalismos para modelar e avaliar sistemas concorrentes.
+TEm mais de uma coisa aconecendo dentro de um sistema opreacional, por exemplo.
+
+- Descrever a sprincipais características
 
 ```mermaid
 graph TD;
@@ -102,3 +102,17 @@ Termino: 29/06
 - Uma Introducao as Redes de PEtri. Paulo Maciel.
 - Lectures Notes on Petri Nets I. Springer Verlag
 - Lectures Notes on Petri Nets II. Springer Verlag
+
+## Modelos para Sistemas COmunicantes
+
+1. FOrmalismo da Linguagem marcada e Gerada e qual a diferença entre os automatas e maquinas de estado. 
+
+## Conferências Exterior
+
+https://ppgcc.github.io/discentesPPGCC/pt-BR/qualis/
+
+## IDES
+
+https://github.com/krudie/IDES
+
+https://github.com/krudie/IDES/blob/master/docs/help/LaTeX%20Rendering/index.md
