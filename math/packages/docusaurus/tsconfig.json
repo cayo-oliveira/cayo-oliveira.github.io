@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "references": [
+    {"path": "./tsconfig.server.json"},
+    {"path": "./tsconfig.client.json"}
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "checkJs": true,
+    "rootDir": ".",
+    "module": "esnext"
+  },
+  "include": ["bin"],
+  "exclude": ["**/__tests__/**"]
+}

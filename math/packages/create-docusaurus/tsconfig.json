@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "references": [{"path": "./tsconfig.build.json"}],
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "esnext",
+    "rootDir": "."
+  },
+  "include": ["bin"],
+  "exclude": ["**/__tests__/**"]
+}
