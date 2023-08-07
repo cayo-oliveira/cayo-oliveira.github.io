@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # YouEngCode
 
-Come and lets learn about **Data Science and Data Engineer**. See more in **[youtube.com/youengcode](https://www.youtube.com/@YouEngCode/featured)**.
+Come and lets learn about **Data Science and Data Engineer**.. See more in **[youtube.com/youengcode](https://www.youtube.com/@YouEngCode/featured)**.
 
 ## Data Science and Data Engineer
 
