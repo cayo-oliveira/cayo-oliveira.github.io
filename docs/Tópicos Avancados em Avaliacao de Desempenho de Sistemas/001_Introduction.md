@@ -57,7 +57,7 @@ Deverá seguir o padrão dos outros anos.
 Outras possibilidades: IA aplicada para avaliação de desempenho, model checking
 
 ## Site
-[Tópicos Avançados em Avaliação de Desempenho de Sistemas](cin.ufpe.br/~eagt/in1160)
+[Tópicos Avançados em Avaliação de Desempenho de Sistemas](https://www.cin.ufpe.br/~eagt/in1160)
 
 ## Materiais
 
