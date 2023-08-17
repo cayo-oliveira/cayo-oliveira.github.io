@@ -14,15 +14,14 @@ The history of Computer Science begins with the invention of the **first mechani
 
 **The first computer was the Electronic Numerical Integrator And Computer (ENIAC)** developed during **World War II**. It was created by **John W. Mauchly and J. Presper Eckert** and was unveiled in **1945**. It was a massive machine that filled an entire room and was used to perform complex calculations for the military. The ENIAC was capable of performing 5,000 calculations per second, which was a significant leap forward in technology at the time.
 
-```text title="Curiosity about ENIAC"
+:::tip Curiosity about ENIAC
 The ENIAC (Electronic Numerical Integrator And Computer) was created during World War II.
 Was used to perform complex calculations for the U.S. military. 
 It was not created or used to crack the Enigma machine. 
 Enigma was a cryptographic machine used by the Germans during World War II to encrypt secret messages. 
 The efforts to crack Enigma were mainly led by the British, who used a device of mechanical computers. 
-ENIAC was used primarily to calculate ballistics, such as the trajectory of projectiles...
-...and to develop the equations for the nuclear bomb.
-```
+ENIAC was used primarily to calculate ballistics, such as the trajectory of projectiles and to develop the equations for the nuclear bomb.
+:::info
 
 With the development of the ENIAC, the first steps were taken towards the computer science field. Subsequently, **processors with more power were developed**, such as the IBM System/360 and the UNIVAC 1108. These processors enabled the development of more advanced computer systems and paved the way for the development of the modern computer. **Today's processors are thousands of times more powerful than the first processors**, which has e**nabled the development of more advanced computer systems and applications**.
 
