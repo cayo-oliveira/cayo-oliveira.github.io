@@ -24,7 +24,7 @@ By learning these skillsets, individuals can become more attractive to employers
 Our format (left) allows you to easily find all the relevant information on Machine Learning, Data Science and Data Engineering. With codes on Python, SQL, etc. 
 
 ```md
-All books, articles, videos used on this site you'll find on references.
+All books, articles, videos used on this site you'll find on references..
 ```
 
 ## About Us
