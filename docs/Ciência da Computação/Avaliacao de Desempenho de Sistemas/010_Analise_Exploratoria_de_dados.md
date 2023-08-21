@@ -8,6 +8,70 @@ sidebar_position: 12
 MACIEL, Paulo. Operational Analysis. In: Performance, Reliability and Availability of Computational Systems Volume I. 1. ed. New York: Springer, 2018. p. 169-190.
 :::
 
+## Classificação do Dado
+
+```sql
+SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'nome_da_tabela';
+```
+
+## Classificação Detalhada do Dado
+
+```sql
+SELECT 
+    COLUMN_NAME,
+    DATA_TYPE,
+    CHARACTER_MAXIMUM_LENGTH AS Tamanho,
+    CASE 
+        WHEN DATA_TYPE IN ('char', 'varchar', 'text', 'nchar', 'nvarchar') THEN
+            CASE 
+                WHEN CHARACTER_MAXIMUM_LENGTH IS NULL THEN 'Categórico (Tamanho desconhecido)'
+                WHEN CHARACTER_MAXIMUM_LENGTH = 0 THEN 'Categórico (Vazia)'
+                ELSE 'Categórico'
+            END
+        WHEN LOWER(COLUMN_NAME) LIKE '%minutos%' OR 
+             LOWER(COLUMN_NAME) LIKE '%horas%' OR 
+             LOWER(COLUMN_NAME) LIKE '%quantidade%' OR 
+             LOWER(COLUMN_NAME) LIKE '%total%' OR 
+             LOWER(COLUMN_NAME) LIKE '%soma%' THEN
+            'Quantitativo'
+        ELSE 'Categórico'
+    END AS TipoDado,
+    CASE 
+        WHEN DATA_TYPE IN ('char', 'varchar', 'text', 'nchar', 'nvarchar') AND CHARACTER_MAXIMUM_LENGTH > 0 THEN
+            'aim_pareto'
+        ELSE NULL
+    END AS aim_pareto,
+    CASE 
+        WHEN DATA_TYPE IN ('date', 'datetime', 'timestamp') OR LOWER(COLUMN_NAME) LIKE '%data%' THEN
+            'aim_diagrama'
+        ELSE NULL
+    END AS aim_diagrama,
+    CASE 
+        WHEN DATA_TYPE IN ('char', 'varchar', 'text', 'nchar', 'nvarchar') AND CHARACTER_MAXIMUM_LENGTH > 0 THEN
+            'aim_pizza'
+        ELSE NULL
+    END AS aim_pizza,
+    CASE 
+        WHEN DATA_TYPE IN ('tinyint', 'smallint', 'int', 'bigint', 'float', 'real', 'numeric', 'decimal') OR 
+             LOWER(COLUMN_NAME) LIKE '%minutos%' OR 
+             LOWER(COLUMN_NAME) LIKE '%horas%' OR 
+             LOWER(COLUMN_NAME) LIKE '%quantidade%' OR 
+             LOWER(COLUMN_NAME) LIKE '%total%' OR 
+             LOWER(COLUMN_NAME) LIKE '%soma%' THEN
+            'aim_histograma'
+        ELSE NULL
+    END AS aim_histograma,
+    CASE 
+        WHEN DATA_TYPE IN ('tinyint', 'smallint', 'int', 'bigint', 'float', 'real', 'numeric', 'decimal') THEN
+            'aim_boxplot'
+        ELSE NULL
+    END AS aim_boxplot
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'nome_da_tabela';
+```
+
 ## Resumo Estatístico (SQL)
 
 ```sql
