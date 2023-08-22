@@ -139,4 +139,12 @@ SELECT
 FROM tabela t
 JOIN OutlierBounds ob ON t.quantitativo_coluna = ob.quantitativo_coluna;
 ```
+## Assimetria
 
+```sql
+-- Calculando a assimetria (skewness) de uma coluna
+SELECT
+    'NomeDaColuna' AS NomeColuna,
+    AVG(Power(NomeDaColuna - AVG(NomeDaColuna), 3)) / Power(STDDEV(NomeDaColuna), 3) AS Assimetria
+FROM NomeDaTabela;
+```
