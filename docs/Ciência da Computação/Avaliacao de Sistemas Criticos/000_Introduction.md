@@ -104,3 +104,31 @@ Avaliar a disponibilidade e confiabilidade de sistemas.
 **Contribuição:** Agregação do conteúdo histórico e técnico sobre avaliação de sistemas críticos, incluindo Dependability, Reliability Block Diagrams, Árvores de Falha e Redes de Petri Estocásticas, proporcionando uma fonte de conhecimento acessível e informativa para a comunidade interessada.
 
 *Lembrando que as datas para alguns dos milestones podem ser aproximadas, considerando a evolução contínua da pesquisa e da tecnologia ao longo do tempo.*
+
+## Revisão Estatística
+
+> Complementar com a revisão estatística mais detalhada, a partir do livro, em termos de aula.
+
+Dado um sistema, eu tenho parâmetros teta. teta = {alfa, beta, ...} que geralmente eu não conheço. 
+
+Para conhecer esse sistema, eu preciso medir esse sistema e depois obtenho uma amostra com n medições.
+
+[Imagem](http://www.youengcode.com)
+> Imagem Sistema > Medição > Amostra
+
+### Estatística descritiva:
+
+Eu pego essa amostra n e gero um sumário estatístico (revisão estatística com média, desvio padrão, skewness, desvio padrão) da amostra, assim como gerar gráficos que auxiliem o entendimento da amostra.
+
+[Imagem](http://www.youengcode.com)
+> Imagem Sistema > Medição > Amostra > Estatística Descritiva > Sumário Estatístico + Gráficos Exploratórios
+
+### Inferência Estatística:
+
+Agora, dado o sumário estatístico e da amostra, eu quero estimar os parâmetros do sistema. Eu quero tentar estimar esse sistema ali, com algum grau de confiabilidade.
+
+[Imagem](http://www.youengcode.com)
+> Imagem Sistema > Medição > Amostra > Estatística Descritiva > Sumário Estatístico + Gráficos Exploratórios > Inferência Estatística > Estimar os parametros do sistema (tem outro input vindo da amostra)
+
+Essa inferência tem um grau de confiança em que eu acredito que, a partir daquela amostra, eu confio naqueles parâmetros estimados do sistema.
+
